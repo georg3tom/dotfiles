@@ -38,6 +38,7 @@ set shiftwidth=4
 set cursorline
 set foldmethod=indent
 set nrformats+=alpha
+set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             COLORSCHEME                             "
@@ -123,7 +124,12 @@ au BufReadPost *
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Remove trailing spaces                        "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufReadPost * %s/\s\+$//e
+" autocmd BufReadPost * %s/\s\+$//e
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                       Clear search highlights                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "       To sue ALT+{h,j,k,l} to navigate windows from any mode:       "
@@ -171,7 +177,7 @@ call neomake#configure#automake('w')
 function! MyOnNeomakeJobFinished() abort
 	let context = g:neomake_hook_context
 	if context.jobinfo.exit_code == 0
-		echom printf('😻 All tests passed ')
+		echom printf('😃 All tests passed ')
 	endif
 	if context.jobinfo.exit_code == 1
 		echom printf('🤬 Failing tests')
@@ -195,3 +201,4 @@ augroup AutoSaveFolds
 	autocmd BufWinLeave * mkview
 	autocmd BufWinEnter * silent! loadview
 augroup END
+
