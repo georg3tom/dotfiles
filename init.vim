@@ -30,6 +30,8 @@ cnoreabbrev WQ wq
 cnoreabbrev Wq wq
 cnoreabbrev qq q!
 cnoreabbrev Qq q!
+cnoreabbrev Qa qa
+
 
 set number
 set relativenumber
@@ -38,7 +40,15 @@ set shiftwidth=4
 set cursorline
 set foldmethod=indent
 set nrformats+=alpha
-set clipboard=unnamedplus
+set splitright
+set splitbelow
+set mouse=a
+set expandtab
+set title
+set undofile
+
+
+" set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             COLORSCHEME                             "
@@ -74,6 +84,8 @@ set timeoutlen=1000 ttimeoutlen=0
 let g:airline_powerline_fonts = 1
 let g:airline_theme='badcat'
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_autoclose_preview_window_after_completion = 1
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 " let g:ycm_key_list_select_completion = ['<Down>']
 
 let g:UltiSnipsExpandTrigger="<c-space>"
@@ -91,6 +103,14 @@ let g:ycm_min_num_of_chars_for_completion = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <C-p> :Files<cr>
 imap <c-x><c-l> <plug>(fzf-complete-line)
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
 
 let g:fzf_action = {
 	\ 'ctrl-t': 'tab split',
@@ -124,7 +144,7 @@ au BufReadPost *
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Remove trailing spaces                        "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" autocmd BufReadPost * %s/\s\+$//e
+autocmd BufReadPost silent! * %s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Clear search highlights                       "
@@ -196,9 +216,9 @@ let g:neomake_error_sign = {'text': '●'}
 "                             Save folds                              "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufRead * normal zR
-augroup AutoSaveFolds
-	autocmd!
-	autocmd BufWinLeave * mkview
-	autocmd BufWinEnter * silent! loadview
-augroup END
+" augroup AutoSaveFolds
+" 	autocmd!
+" 	autocmd BufWinLeave * silent! mkview
+" 	autocmd BufWinEnter * silent! loadview
+" augroup END
 

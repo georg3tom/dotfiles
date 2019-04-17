@@ -1,18 +1,20 @@
 " Vim Airline theme.
-" Modified badcat theme(Luan Vicente <hi[at]idlua.me>)
-"Modified for palenight
+"
+" Repository: https://github.com/idlua/badcat
+" Author:     Luan Vicente <hi[at]idlua.me>
 
-"" COLOR PALETTE -------------------------------------------------------------{{{
+
+" COLOR PALETTE -------------------------------------------------------------{{{
 let g:airline#themes#badcat#palette = {}
 
 let s:guiBlack       = "#1c1c1c"
 let s:guiPale    	 = "#252932"
 let s:guiGray        = "#262626"
 let s:guiLightgray   = "#6c6c6c"
-let s:guiWhite       = "#C792EA"
+let s:guiWhite       = "#D3D7CF"    "Normal white
 let s:guiRed         = "#ff5f5f"
 let s:guiGreen       = "#5AF78E"
-let s:guiBlue        = "#5fafd7"
+let s:guiBlue        = "#57C7FF"
 let s:guiOrange      = "#ffaf5f"
 
 let s:ctermBlack     = "232"

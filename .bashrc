@@ -12,7 +12,6 @@ red=$(tput setaf 160);
 default=$(tput sgr0);
 
 PS1="[\[${green}\]\W\[${default}\]]\$ ";
-#PS1="[\W]> ";
 #PS1="\[${red}\][\W]> \[$(tput setaf 15)\]";
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=
