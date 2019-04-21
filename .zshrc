@@ -11,19 +11,10 @@ setopt HIST_SAVE_NO_DUPS
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon todo command_execution_time dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=false
-# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator dir_writable command_execution_time)
+source ~/.config/zsh/.purepower
+# source ~/.config/zsh/.george
 POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND=069
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=000
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="❯ "
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_CUSTOM_FEDORA_ICON="echo "
-POWERLEVEL9K_CUSTOM_FEDORA_ICON_BACKGROUND=069
-POWERLEVEL9K_CUSTOM_FEDORA_ICON_FOREGROUND=015
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=4
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
