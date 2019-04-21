@@ -17,6 +17,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'drewtempelmeyer/palenight.vim'
 Plugin 'neomake/neomake'
+Plugin 'ryanoasis/vim-devicons'
 
 call vundle#end()
 filetype plugin indent on
@@ -46,8 +47,6 @@ set mouse=a
 set expandtab
 set title
 set undofile
-
-
 " set clipboard=unnamedplus
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -140,6 +139,8 @@ au BufReadPost *
         \ if line("'\"") > 1 && line("'\"") <= line("$") && &ft !~# 'commit'
         \ |   exe "normal! g`\""
         \ | endif
+
+nnoremap <leader>cd :cd %:p:h<CR>:pwd<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                       Remove trailing spaces                        "
