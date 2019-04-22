@@ -1,6 +1,6 @@
 # dotfiles
 
-### neovim
-![nvim][screenshot]
+> ### neovim
+> ![nvim][screenshot]
 
-[screenshot]:images/nvimss.png
+> [screenshot]:images/nvimss.png
