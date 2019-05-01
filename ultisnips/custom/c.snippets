@@ -1,0 +1,25 @@
+priority -2
+snippet main "default"
+#include<stdio.h>
+
+int main()
+{
+	$1
+	return 0;
+}
+endsnippet
+
+snippet for "for"
+for(int ${1:i}=0;$1<${2:n};++$1)
+{
+	$3
+}
+endsnippet
+
+snippet pr "print"
+printf("$1");
+endsnippet
+
+snippet sc "scan"
+scanf("${1:%d}",&${2:n});
+endsnippet
