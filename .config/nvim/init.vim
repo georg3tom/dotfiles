@@ -1,8 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets'
-Plug 'VundleVim/Vundle.vim'
 Plug 'sjl/badwolf'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -11,8 +11,9 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'neomake/neomake'
+Plug 'tpope/vim-surround'
 Plug 'ryanoasis/vim-devicons'
+" Plug 'neomake/neomake'
 
 call plug#end()
 
@@ -31,7 +32,7 @@ set number
 set relativenumber
 set tabstop=4
 set shiftwidth=4
-set cursorline
+" set cursorline
 set foldmethod=indent
 set nrformats+=alpha
 set splitright
@@ -40,11 +41,13 @@ set mouse=a
 set expandtab
 set title
 set undofile
+let g:deoplete#enable_at_startup = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             COLORSCHEME                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:palenight_terminal_italics=1
 colorscheme palenight
 " colorscheme badwolf
 if g:colors_name == "badwolf"
@@ -64,7 +67,6 @@ if g:colors_name == "palenight"
 	" autocmd VimEnter * highlight Pmenu ctermbg=16 guibg=#121212
 	" autocmd VimEnter * highlight CursorLine ctermbg=16 guibg=#121212
 endif
-let g:palenight_terminal_italics=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Plugin settings                           "
@@ -77,6 +79,33 @@ let g:airline_theme='badcat'
 
 let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
+
+let g:neomake_python_pep8_exe = 'python3'
+let g:neomake_python_enabled_makers = ['pep8']
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              coc                                      "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+      let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+    endfunction
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             FZF config                              "
@@ -180,26 +209,26 @@ nnoremap <A-0> 10gt
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Neomake config                            "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call neomake#configure#automake('w')
+" call neomake#configure#automake('w')
 
-" Show message when all tests are passing
-function! MyOnNeomakeJobFinished() abort
-	let context = g:neomake_hook_context
-	if context.jobinfo.exit_code == 0
-		echom printf('😃 All tests passed ')
-	endif
-	if context.jobinfo.exit_code == 1
-		echom printf('🤬 Failing tests')
-	endif
-endfunction
+" " Show message when all tests are passing
+" function! MyOnNeomakeJobFinished() abort
+" 	let context = g:neomake_hook_context
+" 	if context.jobinfo.exit_code == 0
+" 		echom printf('😃 All tests passed ')
+" 	endif
+" 	if context.jobinfo.exit_code == 1
+" 		echom printf('🤬 Failing tests')
+" 	endif
+" endfunction
 
-augroup my_neomake_hooks
-	au!
-	autocmd User NeomakeJobFinished call MyOnNeomakeJobFinished()
-augroup END
+" augroup my_neomake_hooks
+" 	au!
+" 	autocmd User NeomakeJobFinished call MyOnNeomakeJobFinished()
+" augroup END
 
-let g:neomake_warning_sign ={'text': '●'}
-let g:neomake_error_sign = {'text': '●'}
+" let g:neomake_warning_sign ={'text': '●'}
+" let g:neomake_error_sign = {'text': '●'}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Save folds                              "

@@ -69,11 +69,11 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
-plugins=(git zsh-autosuggestions fzf)
-
+plugins=(git fzf zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+ZSH_AUTOSUGGEST_STRATEGY=(history)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -105,10 +105,13 @@ source $ZSH/oh-my-zsh.sh
 alias c='clear';
 alias vim='nvim';
 alias la='ls -la';
-alias gotop='gotop -c monokai -p -s -b'
+alias gotop='gotop -c monokai -p -s'
+alias fast='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 bindkey '^ ' autosuggest-execute
 
 export FZF_DEFAULT_OPTS='
 --color fg:252,hl:67,fg+:252,bg+:235,hl+:81
 --color info:144,prompt:161,spinner:135,pointer:135,marker:118
 '
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
