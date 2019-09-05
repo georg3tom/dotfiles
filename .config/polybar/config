@@ -22,7 +22,7 @@ foreground = ${colors.xfg}
 foreground-alt = #555
 primary = #ffb52a
 secondary = #5AF78E
-alert = #bd2c40
+alert = #de935f
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -57,7 +57,7 @@ font-2 = "Jam\-icons:style=Regular:size=14;4"
 
 modules-left = i3
 modules-center = mpd date
-modules-right = netspeed wlan eth memory cpu alsa battery xbacklight updates-arch xkeyboard
+modules-right = netspeed netspeed2 wlan eth memory cpu alsa battery backlight-acpi updates-arch 
 
 tray-position = right
 tray-padding = 6
@@ -168,7 +168,7 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.alert}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
@@ -191,21 +191,22 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <ramp> <label>
+output = eDP-1-1
+
+format =  <label>
+format-prefix = 
 label = %percentage%%
 
-ramp-0 =""
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+; bar-width = 10
+; bar-indicator = |
+; bar-indicator-foreground = #fff
+; bar-indicator-font = 2
+; bar-fill = ─
+; bar-fill-font = 2
+; bar-fill-foreground = #9f78e1
+; bar-empty = ─
+; bar-empty-font = 2
+; bar-empty-foreground = ${colors.foreground-alt}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -237,6 +238,14 @@ format-connected-padding = 2
 format-connected-background=${colors.xbg}
 label-connected = " %upspeed%  %downspeed%"
 
+[module/netspeed2]
+type = internal/network
+interface = wlo1
+interval = 1.0
+format-connected = <label-connected>
+format-connected-padding = 2
+format-connected-background=${colors.xbg}
+label-connected = " %upspeed%  %downspeed%"
 
 [module/wlan]
 type = internal/network
@@ -259,6 +268,8 @@ ramp-signal-0 = 
 ; ramp-signal-3 = 
 ; ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground}
+
+click-left = exec nm-applet
 
 [module/eth]
 type = internal/network
@@ -284,7 +295,7 @@ date =
 date-alt = " %Y-%m-%d"
 
 time = %H:%M
-time-alt = %H:%M:%S
+time-alt = %H:%M
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
@@ -367,23 +378,32 @@ battery = BAT0
 adapter = AC
 full-at = 100
 
-label-charging-alt = %percentage%% %time%
+time-format = %H:%M
+
+label-charging = %percentage%% %time%
 format-charging = <animation-charging> <label-charging>
-click-left = echo %time%
 ;format-charging-underline = #ffb52a
 
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-alt = <animation-discharging> <label-discharging> %time%
+label-discharging = %percentage%% %time%
+format-discharging = <ramp-capacity> <label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = 
 format-full-prefix-foreground = ${colors.foreground}
 ;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-0-foreground = #de0037
+ramp-capacity-foreground = ${colors.foreground}
 
 animation-charging-0 = 
 animation-charging-foreground = ${colors.foreground}

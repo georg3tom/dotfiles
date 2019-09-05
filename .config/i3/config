@@ -24,11 +24,11 @@ font xft: SF Pro Display 12
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
+# exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 #bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -53,10 +53,10 @@ bindsym $mod+m exec --no-startup-id ~/.config/rofi/scripts/network.sh
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -65,10 +65,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -77,7 +77,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -171,8 +171,24 @@ mode "resize" {
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
 }
+bindsym $mod+i resize grow height 10 px or 10 ppt
+bindsym $mod+u resize shrink height 10 px or 10 ppt
+bindsym $mod+y resize grow width 10 px or 10 ppt
+bindsym $mod+o resize shrink width 10 px or 10 ppt
 
 bindsym $mod+r mode "resize"
+
+# Start applications on specific workspaces
+assign [class="code"] $ws1
+assign [class="kitty"] $ws1
+assign [class="irefox"] $ws2
+assign [class="autilus"] $ws3
+assign [class="vlc"] $ws4
+for_window [class="Spotify"] move to workspace $ws4
+for_window [class="kitty"] focus
+for_window [class="irefox"] focus
+for_window [class="autilus"] focus
+for_window [class="vlc"] focus
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -194,9 +210,9 @@ new_window pixel 0
 new_float pixel 0
 
 # change borders
-bindsym $mod+u border none
-bindsym $mod+n border normal 0
-bindsym $mod+shift+n border normal 1
+# bindsym $mod+u border none
+# bindsym $mod+n border normal 0
+# bindsym $mod+shift+n border normal 1
 
 # Use Mouse+$mod to drag floating windows
 floating_modifier $mod
@@ -205,6 +221,9 @@ floating_modifier $mod
 gaps inner 10
 gaps outer 0
 
+bindsym $mod+x gaps inner current plus 5
+bindsym $mod+Shift+x gaps inner current minus 5
+
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
@@ -212,6 +231,10 @@ smart_borders on
 bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
 bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
 bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
+
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec light -k -A 10 # increase screen brightness
