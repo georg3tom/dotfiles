@@ -33,8 +33,8 @@ height = 30
 radius = 0
 fixed-center = true
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${colors.xbg}
+foreground = ${colors.xfg}
 
 line-size = 3
 line-color = #f00
@@ -43,7 +43,7 @@ border-top-size = 0
 border-bottom-size = 0
 border-right-size = 0
 border-left-size = 0
-border-color = #00000000
+border-color = #000000
 
 padding-left = 0
 padding-right = 2
@@ -55,18 +55,18 @@ font-0 = "sf pro display:style=regular:size=11;3"
 font-1 = "SFMono Nerd Font:style=Regular:size=12;3"
 font-2 = "Jam\-icons:style=Regular:size=14;4"
 
-modules-left = i3
-modules-center = mpd date
-modules-right = netspeed netspeed2 wlan eth memory cpu alsa battery backlight-acpi updates-arch 
+modules-left = i3 bspwm
+modules-center = date
+modules-right = wlan eth memory cpu pulseaudio battery backlight-acpi updates-arch
 
 tray-position = right
 tray-padding = 6
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
+wm-restack = bspwm
 ;wm-restack = i3
 
-;override-redirect = true
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -91,17 +91,10 @@ blacklist-0 = num lock
 
 format = <label-indicator>
 
-;format-prefix = " "
-; format-prefix-foreground = ${colors.foreground}
-;format-prefix-underline = ${colors.secondary}
-
-; label-layout = %layout%
-;label-layout-underline = ${colors.secondary}
-
 label-indicator = 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-foreground = ${colors.foreground}
+label-indicator-foreground = ${colors.xfg}
 ;label-indicator-underline = ${colors.secondary}
 
 [module/filesystem]
@@ -116,20 +109,25 @@ label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
 type = internal/bspwm
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
 
 label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
+label-focused-foreground = #ffffff
+label-focused-background = #4b5cc4
+label-focused-padding = 3
 
 label-occupied = %index%
-label-occupied-padding = 2
+label-occupied-padding = 3
 
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
+label-urgent = %index%
+label-urgent-foreground = ${colors.alert}
+label-urgent-underline = #9b0a20
+label-urgent-padding = 3
 
-label-empty = %index%
+label-empty =
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 2
 
@@ -217,7 +215,7 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.xfg}
 ;format-underline = #f90000
 label = %percentage:2%%
 
@@ -225,7 +223,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.xfg}
 ;format-underline = #4bffdc
 label = %percentage_used%%
 
@@ -267,7 +265,7 @@ ramp-signal-0 = 
 ; ramp-signal-2 = 
 ; ramp-signal-3 = 
 ; ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground}
+ramp-signal-foreground = ${colors.xfg}
 
 click-left = exec nm-applet
 
@@ -278,7 +276,7 @@ interval = 3.0
 
 ;format-connected-underline = #55aa55
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground}
+format-connected-prefix-foreground = ${colors.xfg}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -291,27 +289,28 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
-date-alt = " %Y-%m-%d"
+date = %a %d
+date-alt = " %d-%m-%Y"
 
 time = %H:%M
 time-alt = %H:%M
-
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-;format-underline = #0a6cf5
 
 label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+label-muted = 
+label-muted-foreground = ${colors.xfg}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -333,37 +332,17 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 [module/alsa]
 type = internal/alsa
 
-
-; Available tags:
-;   <label-volume> (default)
-;   <ramp-volume>
-;   <bar-volume>
 format-volume = <ramp-volume> <label-volume>
 
-; Available tags:
-;   <label-muted> (default)
-;   <ramp-volume>
-;   <bar-volume>
-;format-muted = <label-muted>
-
-; Available tokens:
-;   %percentage% (default)
-;label-volume = %percentage%%
-
-; Available tokens:
-;   %percentage% (default)
 label-muted = 
-label-muted-foreground = ${colors.foreground}
+label-muted-foreground = ${colors.xfg}
 
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
+ramp-volume-3 = 
 
-; If defined, it will replace <ramp-volume> when
-; headphones are plugged in to `headphone_control_numid`
-; If undefined, <ramp-volume> will be used for both
-; Only applies if <ramp-volume> is used
 ramp-headphones-0 = 
 ramp-headphones-1 = 
 
@@ -389,28 +368,28 @@ format-discharging = <ramp-capacity> <label-discharging>
 ;format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix = 
-format-full-prefix-foreground = ${colors.foreground}
+format-full-prefix-foreground = ${colors.xfg}
 ;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
 ramp-capacity-9 = 
 ramp-capacity-0-foreground = #de0037
-ramp-capacity-foreground = ${colors.foreground}
+ramp-capacity-foreground = ${colors.xfg}
 
 animation-charging-0 = 
-animation-charging-foreground = ${colors.foreground}
+animation-charging-foreground = ${colors.xfg}
 animation-charging-framerate = 750
 
 animation-discharging-0 = 
-animation-discharging-foreground = ${colors.foreground}
+animation-discharging-foreground = ${colors.xfg}
 animation-discharging-framerate = 750
 
 [module/temperature]

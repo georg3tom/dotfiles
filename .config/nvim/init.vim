@@ -37,7 +37,7 @@ set foldmethod=indent
 set nrformats+=alpha
 set splitright
 set splitbelow
-set mouse=a
+" set mouse=a
 set expandtab
 set title
 set undofile

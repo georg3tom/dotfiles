@@ -20,15 +20,14 @@ case $chosen in
         systemctl reboot
         ;;
     $lock)
-#       light-locker-command -l
-	betterlockscreen -l dim
+        ~/.config/scripts/lock.sh
         ;;
     $suspend)
-        mpc -q pause
         amixer set Master mute
         systemctl suspend
         ;;
     $log_out)
+        bspc quit
         i3-msg exit
         ;;
 esac

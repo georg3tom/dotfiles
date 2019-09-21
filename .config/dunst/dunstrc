@@ -1,10 +1,10 @@
 #
-#  ____                  _                 _                 _            
+#  ____                  _                 _                 _
 # |  _ \ _   _ _ __  ___| |_            __| |_   _ _ __  ___| |_ _ __ ____
 # | | | | | | | '_ \/ __| __|  _____   / _` | | | | '_ \/ __| __| '__/ ___|
 # | |_| | |_| | | | \__ \ |_  |_____| | (_| | |_| | | | \__ \ |_| | | (___
 # |____/ \__,_|_| |_|___/\__|          \__,_|\__,_|_| |_|___/\__|_|  \____|
-#                                                                                              
+#
 #
 
 #
@@ -39,8 +39,9 @@
     show_indicators = yes
     icon_position = left
     max_icon_size = 48
+    # icon_path = /usr/share/icons/Adwaita/48x48/status/:/usr/share/icons/Adwaita/48x48/devices/:/usr/share/icons/Adwaita/48x48/apps/
     icon_path = /usr/share/icons/Papirus/48x48/status/:/usr/share/icons/Papirus/48x48/devices/:/usr/share/icons/Numix-Circle/48x48/apps/
-    icon_path = /usr/share/icons/Arc/status/48/:/usr/share/icons/Arc/devices/48/:/usr/share/icons/Numix-Circle/48/apps/ 
+    # icon_path = /usr/share/icons/Adwaita/status/:/usr/share/icons/Adwaita/devices/:/usr/share/icons/Numix-Circle/48/apps/
     sticky_history = yes
     history_length = 20
     always_run_script = true
@@ -74,7 +75,7 @@
 
 
 [urgency_critical]
-    background="#3a3a3a"
+    background="#FF5C57"
     foreground="#f5f5f5"
     timeout = 0
 

@@ -8,7 +8,6 @@
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -138,7 +137,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
-
+bindsym $mod+Tab workspace back_and_forth
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -176,7 +175,7 @@ bindsym $mod+u resize shrink height 10 px or 10 ppt
 bindsym $mod+y resize grow width 10 px or 10 ppt
 bindsym $mod+o resize shrink width 10 px or 10 ppt
 
-bindsym $mod+r mode "resize"
+# bindsym $mod+r mode "resize"
 
 # Start applications on specific workspaces
 assign [class="code"] $ws1
@@ -184,11 +183,13 @@ assign [class="kitty"] $ws1
 assign [class="irefox"] $ws2
 assign [class="autilus"] $ws3
 assign [class="vlc"] $ws4
+assign [class="athura"] $ws3
 for_window [class="Spotify"] move to workspace $ws4
 for_window [class="kitty"] focus
 for_window [class="irefox"] focus
 for_window [class="autilus"] focus
 for_window [class="vlc"] focus
+for_window [class="athura"] focus
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -197,12 +198,12 @@ for_window [class="vlc"] focus
 #}
 
 # Theme colors
-# class                   border            backgr.          text.          indic.          child_border
-client.focused           #a0a0a0     #b0b0b0      #191919     #bdbdbd       #d0d0d0
-client.focused_inactive  #3a3a3a      #3a3a3a     #e1e1e1     #565656       #d0d0d0
-client.unfocused         #3a3a3a      #3a3a3a      #e1e1e1     #565656       #d0d0d0
-client.urgent           #ff0000            #ff0000        #ffffff        #268BD2
-client.placeholder      #000000            #848484        #FFFFFF        #268BD2
+# class                 border      backgr.      text.       indic.        child_border
+client.unfocused        #a0a0a0     #b0b0b0      #191919     #bdbdbd       #d0d0d0
+client.focused_inactive #a0a0a0     #b0b0b0      #191919     #bdbdbd       #d0d0d0
+client.focused          #3a3a3a     #3a3a3a      #e1e1e1     #565656       #d0d0d0
+client.urgent           #ff0000     #ff0000      #ffffff     #268BD2
+client.placeholder      #000000     #848484      #FFFFFF     #268BD2
 client.background       #ffffff
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
@@ -241,13 +242,17 @@ bindsym XF86MonBrightnessUp exec light -k -A 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec light -k -U 10 # decrease screen brightness
 
 
+bindsym XF86Search exec ~/.config/rofi/scripts/monitor_layout.sh
+bindsym $mod+r exec kitty ranger
+
 # Screen Locker
-#bindsym --release $mod+Shift+l exec --no-startup-id betterlockscreen -l dim
+# bindsym --release $mod+Shift+; exec --no-startup-id ~/.config/scripts/lock.sh
 
 #Compton
 exec --no-startup-id compton --config ~/.config/compton/compton.conf
 
 exec_always --no-startup-id  ~/.config/polybar/launchi3.sh
-exec --no-startup-id feh --bg-fill /home/george/Pictures/dark.png
+exec --no-startup-id feh --bg-fill /home/george/Pictures/polygon.png
 
 bindsym Print exec --no-startup-id ~/.config/rofi/scripts/scrotmenu.sh
+bindsym $mod+n exec --no-startup-id ~/.config/rofi/scripts/networkmenu.py

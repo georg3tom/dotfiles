@@ -46,4 +46,3 @@ entry {
   text-color: @accent;
   border-color: @accent;
 }
-
