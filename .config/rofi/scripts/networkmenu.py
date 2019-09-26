@@ -681,7 +681,6 @@ def run():
     else:
         gsm_actions = []
         wwan_actions = []
-
     sel = get_selection(eth_actions, ap_actions, vpn_actions, gsm_actions,
                         blue_actions, wwan_actions, other_actions)
     sel()

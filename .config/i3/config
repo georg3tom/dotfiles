@@ -38,7 +38,7 @@ font xft: SF Pro Display 12
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill

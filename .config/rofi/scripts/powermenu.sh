@@ -23,8 +23,7 @@ case $chosen in
         ~/.config/scripts/lock.sh
         ;;
     $suspend)
-        amixer set Master mute
-        systemctl suspend
+        betterlockscreen -s
         ;;
     $log_out)
         bspc quit

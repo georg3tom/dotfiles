@@ -5,7 +5,7 @@ if ! updates=$(checkupdates 2> /dev/null | wc -l ); then
 fi
 
 if [ "$updates" -gt 0 ]; then
-    echo " "
+    echo "􀅈"
 else
     echo ""
 fi

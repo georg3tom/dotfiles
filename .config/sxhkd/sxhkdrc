@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-    kitty
+    termite
 
 # program launcher and rofi
 super + d
@@ -128,6 +128,15 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
     bspc node -v {-20 0,0 20,0 -20,20 0}
 
+#change window gap
+super + plus
+    bspc config -d focused window_gap $((`bspc config -d focused window_gap` + 5 ))
+super + minus
+    bspc config -d focused window_gap 0
+super + equal
+    bspc config window_gap 12
+super + F7
+    bspc config border_width `echo $(echo "( ! $(bspc config -d focused border_width) )*2" | bc -l)`
 
 # Sreen brightness controls
 XF86MonBrightness{Up,Down}
@@ -148,3 +157,6 @@ Print
 #Network menu
 super + n
     ~/.config/rofi/scripts/networkmenu.py
+
+super + a
+    ~/.config/rofi/scripts/application_switcher.sh

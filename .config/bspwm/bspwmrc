@@ -1,6 +1,8 @@
 #! /bin/sh
 
 sxhkd &
+# Polybar
+~/.config/polybar/launchi3.sh &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
@@ -17,23 +19,22 @@ bspc config focused_border_color "#d8dee8"
 bspc config normal_border_color  "#2f343f"
 
 bspc rule -a kitty desktop='^1' focus=on
+bspc rule -a Termite desktop='^1' focus=on follow=on
 bspc rule -a firefox desktop='^2' focus=on follow=on
 bspc rule -a Zathura desktop='^3' focus=on state=tiled follow=on
 bspc rule -a Spotify desktop='^4'
 bspc rule -a 'spotify' desktop='^4'
 bspc rule -a vlc desktop='^4' follow=on focus=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
-# bspc rule -a feh state=floating follow=on
+bspc rule -a feh state=floating follow=on
 
 # Compton
 compton &
 
-# Polybar
-~/.config/polybar/launchi3.sh &
-
 # feh
 feh --randomize --bg-fill ~/Pictures/Wallpapers
-# feh --bg-fill /home/george/Pictures/polygon.png
 
 # Set Cursor
 xsetroot -cursor_name left_ptr
+
+nm-applet &

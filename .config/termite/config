@@ -1,0 +1,81 @@
+[options]
+#allow_bold = true
+#audible_bell = false
+#bold_is_bright = true
+#cell_height_scale = 1.0
+#cell_width_scale = 1.0
+clickable_url = true
+dynamic_title = true
+font = Source Code Pro SemiBold 12
+#fullscreen = true
+icon_name = terminal
+#mouse_autohide = false
+#scroll_on_output = false
+#scroll_on_keystroke = true
+# Length of the scrollback buffer, 0 disabled the scrollback buffer
+# and setting it to a negative value means "infinite scrollback"
+scrollback_lines = 10000
+#search_wrap = true
+#urgent_on_bell = true
+# hyperlinks = false
+
+# $BROWSER is used by default if set, with xdg-open as a fallback
+#browser = xdg-open
+
+# "system", "on" or "off"
+#cursor_blink = system
+
+# "block", "underline" or "ibeam"
+#cursor_shape = block
+
+# Hide links that are no longer valid in url select overlay mode
+#filter_unmatched_urls = true
+
+# Emit escape sequences for extra modified keys
+#modify_other_keys = false
+
+# set size hints for the window
+#size_hints = false
+
+# "off", "left" or "right"
+#scrollbar = off
+
+[colors]
+foreground = rgb(239, 240, 235)
+foreground_bold = rgb(239, 240, 235)
+background = #1c1c1c
+
+# If unset, will reverse foreground and background
+highlight = #2f2f2f
+
+# Colors from original hyper-snazzy theme
+color0 = rgb(40,42,56)
+color1 = rgb(255,92,87)
+color2 = rgb(90,247,142)
+color3 = rgb(243,249,157)
+color4 = rgb(87,199,255)
+color5 = rgb(255,106,193)
+color6 = rgb(154,237,254)
+color7 = rgb(241,241,240)
+
+# Other default termite colors
+color9 = #FF5C57
+color10 = #5AF78E
+color11 = #F3F99D
+color12 = #57C7FF
+color13 = #FF6AC1
+color14 = #9AEDFE
+color15 = #EFF0EB
+
+[hints]
+#font = Monospace 12
+#foreground = #dcdccc
+#background = #3f3f3f
+#active_foreground = #e68080
+#active_background = #3f3f3f
+# padding = 2
+#border = #3f3f3f
+#border_width = 0.5
+#roundness = 2.0
+
+# vim: ft=dosini cms=#%s

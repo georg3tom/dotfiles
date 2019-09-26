@@ -33,6 +33,8 @@ height = 30
 radius = 0
 fixed-center = true
 
+dim-value = 1.0
+
 background = ${colors.xbg}
 foreground = ${colors.xfg}
 
@@ -49,15 +51,15 @@ padding-left = 0
 padding-right = 2
 
 module-margin-left = 1
-module-margin-right = 2
+module-margin-right = 1
 
 font-0 = "sf pro display:style=regular:size=11;3"
-font-1 = "SFMono Nerd Font:style=Regular:size=12;3"
-font-2 = "Jam\-icons:style=Regular:size=14;4"
+font-1 = "SF Pro Display:style=Regular:size=12;3"
+font-2 = "Jam\-icons:style=Regular:size=13;4"
 
-modules-left = i3 bspwm
+modules-left = bspwm
 modules-center = date
-modules-right = wlan eth memory cpu pulseaudio battery backlight-acpi updates-arch
+modules-right = eth memory battery line pulseaudio backlight-acpi headphone updates-arch
 
 tray-position = right
 tray-padding = 6
@@ -192,7 +194,7 @@ type = internal/xbacklight
 output = eDP-1-1
 
 format =  <label>
-format-prefix = 
+format-prefix = "􀆫 "
 label = %percentage%%
 
 ; bar-width = 10
@@ -222,7 +224,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "􀌈"
 format-prefix-foreground = ${colors.xfg}
 ;format-underline = #4bffdc
 label = %percentage_used%%
@@ -234,7 +236,7 @@ interval = 1.0
 format-connected = <label-connected>
 format-connected-padding = 2
 format-connected-background=${colors.xbg}
-label-connected = " %upspeed%  %downspeed%"
+label-connected = " 􀁶%upspeed%  􀁸%downspeed%"
 
 [module/netspeed2]
 type = internal/network
@@ -243,7 +245,7 @@ interval = 1.0
 format-connected = <label-connected>
 format-connected-padding = 2
 format-connected-background=${colors.xbg}
-label-connected = " %upspeed%  %downspeed%"
+label-connected = " 􀁶%upspeed%  􀁸%downspeed%"
 
 [module/wlan]
 type = internal/network
@@ -274,16 +276,11 @@ type = internal/network
 interface = enp2s0
 interval = 3.0
 
-;format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.xfg}
 label-connected = %local_ip%
 
 format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -291,7 +288,6 @@ interval = 5
 
 date = %a %d
 date-alt = " %d-%m-%Y"
-
 time = %H:%M
 time-alt = %H:%M
 
@@ -307,10 +303,10 @@ label-volume-foreground = ${root.foreground}
 label-muted = 
 label-muted-foreground = ${colors.xfg}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-volume-3 = 
+ramp-volume-0 = 􀊠
+ramp-volume-1 = 􀊤
+ramp-volume-2 = 􀊦
+ramp-volume-3 = 􀊦
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -343,9 +339,6 @@ ramp-volume-1 = 
 ramp-volume-2 = 
 ramp-volume-3 = 
 
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-
 [module/updates-arch]
 type = custom/script
 exec = ~/.config/polybar/scripts/updates-arch.sh
@@ -359,38 +352,29 @@ full-at = 100
 
 time-format = %H:%M
 
-label-charging = %percentage%% %time%
-format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
+label-charging = 􀋥%percentage%%
+; format-charging = %{A1:$HOME/.config/polybar/scripts/battery:}<label-charging>%{A}
+format-charging = <label-charging>
 
-label-discharging = %percentage%% %time%
+label-discharging = %percentage%%
+; format-discharging = %{A1:$HOME/.config/polybar/scripts/battery:}<ramp-capacity>%{A} <label-discharging>
 format-discharging = <ramp-capacity> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = 
-format-full-prefix-foreground = ${colors.xfg}
-;format-full-underline = ${self.format-charging-underline}
+format-full-prefix = 􀋦
+format-full-prefix-foreground = #FFFFFF
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
-ramp-capacity-9 = 
+ramp-capacity-0 = 􀛪
+ramp-capacity-1 = 􀛨
+ramp-capacity-2 = 􀛨
+ramp-capacity-3 = 􀛨
+ramp-capacity-4 = 􀛨
+ramp-capacity-5 = 􀛨
+ramp-capacity-6 = 􀛨
+ramp-capacity-7 = 􀛨
+ramp-capacity-8 = 􀛨
+ramp-capacity-9 = 􀛨
 ramp-capacity-0-foreground = #de0037
 ramp-capacity-foreground = ${colors.xfg}
-
-animation-charging-0 = 
-animation-charging-foreground = ${colors.xfg}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-foreground = ${colors.xfg}
-animation-discharging-framerate = 750
 
 [module/temperature]
 type = internal/temperature
@@ -410,6 +394,16 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
+
+[module/headphone]
+type = custom/script
+exec = echo "􀑈"
+exec-if = ~/.config/polybar/scripts/headphone
+interval = 2
+
+[module/line]
+type = custom/text
+content="%{T2}|%{T-}"
 
 [module/powermenu]
 type = custom/menu

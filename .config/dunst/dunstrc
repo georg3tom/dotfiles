@@ -55,7 +55,7 @@
 
 
 [shortcuts]
-    close = ctrl+space
+    close =  ctrl+period
     history = ctrl+shift+space
     context = ctrl+shift+period
 

@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+export LANG=en_IN.UTF-8
+export TERMINAL="termite"
+export EDITOR="nvim"
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
@@ -69,7 +72,7 @@ POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(git)
-plugins=(git fzf zsh-autosuggestions)
+plugins=(git fzf zsh-autosuggestions )
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -107,6 +110,8 @@ alias vim='nvim';
 alias la='ls -la';
 alias gotop='gotop -c monokai -p -s'
 alias fast='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
+alias hotspot='nmcli con up Hotspot ifname wlo1'
+alias hotspotd='nmcli con down Hotspot ifname wlo1'
 bindkey '^ ' autosuggest-execute
 
 export FZF_DEFAULT_OPTS='
@@ -115,3 +120,8 @@ export FZF_DEFAULT_OPTS='
 '
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+if [[ $TERM == xterm-termite ]]; then
+  . /etc/profile.d/vte.sh
+  __vte_osc7
+fi
