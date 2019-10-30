@@ -1,3 +1,2 @@
 # dotfiles
-![nvim][screenshot]
-[screenshot]:images/desk.png
+![desk](/images/desk.png)
