@@ -23,11 +23,10 @@ case $chosen in
         ~/.config/scripts/lock.sh
         ;;
     $suspend)
-        betterlockscreen -s
+        ~/.config/scripts/lock.sh suspend
         ;;
     $log_out)
         bspc quit
-        i3-msg exit
         ;;
 esac
 

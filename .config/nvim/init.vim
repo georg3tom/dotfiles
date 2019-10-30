@@ -3,17 +3,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets'
-Plug 'sjl/badwolf'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'jiangmiao/auto-pairs'
 Plug 'drewtempelmeyer/palenight.vim'
-Plug 'tpope/vim-surround'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'neomake/neomake'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 
@@ -39,9 +33,8 @@ set splitright
 set splitbelow
 set mouse=a
 set expandtab
-" set title
 set undofile
-let g:deoplete#enable_at_startup = 1
+set noshowmode
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             COLORSCHEME                             "
@@ -49,22 +42,12 @@ let g:deoplete#enable_at_startup = 1
 
 let g:palenight_terminal_italics=1
 colorscheme palenight
-" colorscheme badwolf
-if g:colors_name == "badwolf"
-    set termguicolors
-    autocmd VimEnter * highlight Normal ctermbg=16 guibg=#1C1C1C
-    autocmd VimEnter * highlight LineNr ctermbg=16 guibg=#242424
-    autocmd VimEnter * highlight SignColumn ctermbg=16 guibg=#262626
-    " autocmd VimEnter * highlight Pmenu ctermbg=16 guibg=#121212
-    " autocmd VimEnter * highlight CursorLine ctermbg=16 guibg=#121212
-endif
-
 if g:colors_name == "palenight"
     set termguicolors
     autocmd VimEnter * highlight Normal ctermbg=16 guibg=#1C1C1C
     autocmd VimEnter * highlight LineNr ctermbg=16 guibg=#242424
+    autocmd VimEnter * highlight Pmenu ctermbg=16 guibg=#2e2e2e
     " autocmd VimEnter * highlight SignColumn ctermbg=16 guibg=#262626
-    " autocmd VimEnter * highlight Pmenu ctermbg=16 guibg=#121212
     " autocmd VimEnter * highlight CursorLine ctermbg=16 guibg=#121212
 endif
 
@@ -72,19 +55,59 @@ endif
 "                           Plugin settings                           "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-map <silent> <C-n> :NERDTreeToggle<CR>	"ctrl+n shorcut for NERDtree
-set timeoutlen=1000 ttimeoutlen=0
-let g:airline_powerline_fonts = 1
-let g:airline_theme='badcat'
-
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-
 let g:neomake_python_pep8_exe = 'python3'
 let g:neomake_python_enabled_makers = ['pep8']
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                              Lightline                                "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! StatusDiagnostic() abort
+    let info = get(b:, 'coc_diagnostic_info', {})
+    if get(info, 'error', 0)
+        return "\uf467"
+    endif
+    if get(info, 'warning', 0)
+        return info['warning'] . "\uf421"
+    endif
+    return ""
+endfunction
+
+let g:lightline = {
+            \   'colorscheme': 'material',
+            \   'active': {
+            \     'left':[ [ 'mode', 'paste' ],
+            \              [ 'gitbranch' , 'readonly', 'filename', 'modified' ]
+            \     ],
+            \   'right': [ [ 'lineinfo' ], [ 'percent' ], ['status_diagnostic'] , [ 'fileformat',  'filetype' ] ]
+            \   },
+            \   'component_function': {
+            \     'gitbranch': 'fugitive#head',
+            \   }
+            \ }
+let g:lightline.separator = {
+            \   'left': '', 'right': ''
+            \}
+let g:lightline.subseparator = {
+            \   'left': '', 'right': ''
+            \}
+let g:lightline.tabline = {
+            \   'left': [ ['tabs'] ],
+            \   'right': [ ['close'] ]
+            \ }
+let g:lightline.component = {
+            \ 'status_diagnostic': '%{StatusDiagnostic()}',
+            \ }
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              coc                                      "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
 
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
@@ -96,6 +119,7 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 inoremap <silent><expr> <TAB>
             \ pumvisible() ? "\<C-n>" :
             \ <SID>check_back_space() ? "\<TAB>" :
@@ -106,6 +130,7 @@ function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             FZF config                              "
@@ -207,30 +232,6 @@ nnoremap <A-9> 9gt
 nnoremap <A-0> 10gt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                           Neomake config                            "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" call neomake#configure#automake('w')
-
-" " Show message when all tests are passing
-" function! MyOnNeomakeJobFinished() abort
-" 	let context = g:neomake_hook_context
-" 	if context.jobinfo.exit_code == 0
-" 		echom printf('😃 All tests passed ')
-" 	endif
-" 	if context.jobinfo.exit_code == 1
-" 		echom printf('🤬 Failing tests')
-" 	endif
-" endfunction
-
-" augroup my_neomake_hooks
-" 	au!
-" 	autocmd User NeomakeJobFinished call MyOnNeomakeJobFinished()
-" augroup END
-
-" let g:neomake_warning_sign ={'text': '●'}
-" let g:neomake_error_sign = {'text': '●'}
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Save folds                              "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 au BufRead * normal zR
@@ -239,4 +240,4 @@ au BufRead * normal zR
 " 	autocmd BufWinLeave * silent! mkview
 " 	autocmd BufWinEnter * silent! loadview
 " augroup END
-
+"

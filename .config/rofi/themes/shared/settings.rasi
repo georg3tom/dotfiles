@@ -1,7 +1,7 @@
 /**
  * Allows to change the settings of every menu simply by editing this file
  */
-@import "colorschemes/dark-steel-blue.rasi"
+@import "colorschemes/dark-rice.rasi"
 @import "resolutions/1920x1080.rasi"
 
 #window {

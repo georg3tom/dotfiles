@@ -21,8 +21,8 @@ super + Escape
 # quit/restart bspwm
 # super + shift + {q,r}
 #     bspc {quit,wm -r}
-super + shift + {r,e}
-    {bspc wm -r,~/.config/rofi/scripts/powermenu.sh}
+super + {shift + r,e,shift + e}
+    {bspc wm -r,~/.config/rofi/scripts/powermenu.sh,~/.config/scripts/lock.sh}
 
 # close and kill
 # super + {_,shift + }w
@@ -134,8 +134,8 @@ super + plus
 super + minus
     bspc config -d focused window_gap 0
 super + equal
-    bspc config window_gap 12
-super + F7
+    bspc config window_gap 10
+F7
     bspc config border_width `echo $(echo "( ! $(bspc config -d focused border_width) )*2" | bc -l)`
 
 # Sreen brightness controls
@@ -153,6 +153,8 @@ XF86Audio{Play,Next,Prev}
 #Screenshot
 Print
     ~/.config/rofi/scripts/scrotmenu.sh
+shift+Print
+    ~/.config/scripts/rofirecord
 
 #Network menu
 super + n
@@ -160,3 +162,9 @@ super + n
 
 super + a
     ~/.config/rofi/scripts/application_switcher.sh
+
+XF86Search
+    kitty ranger
+
+super + shift + Insert
+    ~/.config/bspwm/scripts/terminal-ws

@@ -12,10 +12,8 @@
 sleep .5
 
 if ! pgrep -x polybar ; then
-	echo "poly not running"
 	polybar example
 else
 	pkill polybar
 	polybar example 
 fi
-echo "Bars launched..."

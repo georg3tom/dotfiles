@@ -1,5 +1,12 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/george/.config/nvim'
-let g:netrw_dirhist_2='/home/george/tmp'
-let g:netrw_dirhist_3='/home/george/.config'
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/george/Documents/Sophmore/Monsoon/cse'
+let g:netrw_dirhist_7='/home/george/.gnupg'
+let g:netrw_dirhist_6='/home/george/.gnupg/crls.d'
+let g:netrw_dirhist_5='/home/george/.gnupg'
+let g:netrw_dirhist_4='/home/george/.mozilla/firefox'
+let g:netrw_dirhist_3='/home/george/.mozilla'
+let g:netrw_dirhist_2='/home/george/.mozilla/extensions'
+let g:netrw_dirhist_1='/home/george/.mozilla'
+let g:netrw_dirhist_0='/home/george/.yarn/bin'
+let g:netrw_dirhist_9='/home/george'

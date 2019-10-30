@@ -112,6 +112,7 @@ alias gotop='gotop -c monokai -p -s'
 alias fast='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 alias hotspot='nmcli con up Hotspot ifname wlo1'
 alias hotspotd='nmcli con down Hotspot ifname wlo1'
+alias ipinfo='curl ipinfo.io/ip'
 bindkey '^ ' autosuggest-execute
 
 export FZF_DEFAULT_OPTS='

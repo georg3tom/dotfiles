@@ -22,7 +22,8 @@
 }
 #element {
   padding: @option-element-padding;
-  background-color: @background-light;
+  background-color: @background-light-alt;
+  border-radius:20px;
 }
 #element.selected {
   background-color: @accent;
