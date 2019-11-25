@@ -13,18 +13,7 @@
 ;==========================================================
 include-file = ~/.config/polybar/colors.ini
 
-[colors]
-;background = ${xrdb:color0:#222}
-background = ${colors.xbg}
-background-alt = ${colors.xbg2}
-;foreground = ${xrdb:color7:#222}
-foreground = ${colors.xfg}
-foreground-alt = #555
-primary = #ffb52a
-secondary = #5AF78E
-alert = #de935f
-
-[bar/example]
+[bar/classic]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
@@ -33,8 +22,8 @@ height = 30
 radius = 0
 fixed-center = true
 
-background = ${colors.xbg}
-foreground = ${colors.xfg}
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 line-size = 3
 line-color = #f00
@@ -57,11 +46,11 @@ font-2 = "Jam\-icons:style=Regular:size=13;4"
 
 modules-left = bspwm spotify
 modules-center = date
-modules-right = eth memory battery line pulseaudio backlight-acpi headphone updates-arch
+modules-right = eth memory battery pulseaudio backlight-acpi 
 
 tray-position = right
 tray-padding = 6
-tray-background = ${colors.xbg}
+tray-background = ${colors.background}
 
 wm-restack = bspwm
 ;wm-restack = i3
@@ -94,7 +83,7 @@ format = <label-indicator>
 label-indicator = 􀇳
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-foreground = ${colors.xfg}
+label-indicator-foreground = ${colors.foreground}
 
 [module/filesystem]
 type = internal/fs
@@ -172,8 +161,8 @@ type = custom/script
 interval = 1
 format = <label>
 exec = python ~/.config/polybar/scripts/spotify_status.py
-format-background = ${colors.xbg}
-format-foreground = ${colors.xfg}
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
 click-right = playerctl play-pause
 click-left = xdotool search ".*spotify.*" windowactivate &> /dev/null
 
@@ -208,14 +197,14 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = ${colors.xfg}
+format-prefix-foreground = ${colors.foreground}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "􀌈"
-format-prefix-foreground = ${colors.xfg}
+format-prefix-foreground = ${colors.foreground}
 label = %percentage_used%%
 
 [module/netspeed]
@@ -224,7 +213,7 @@ interface = enp2s0
 interval = 1.0
 format-connected = <label-connected>
 format-connected-padding = 2
-format-connected-background=${colors.xbg}
+format-connected-background=${colors.background}
 label-connected = " 􀁶%upspeed%  􀁸%downspeed%"
 
 [module/netspeed2]
@@ -233,7 +222,7 @@ interface = wlo1
 interval = 1.0
 format-connected = <label-connected>
 format-connected-padding = 2
-format-connected-background=${colors.xbg}
+format-connected-background=${colors.background}
 label-connected = " 􀁶%upspeed%  􀁸%downspeed%"
 
 [module/wlan]
@@ -247,7 +236,7 @@ label-connected = %essid%
 format-disconnected =
 
 ramp-signal-0 = 􀙇
-ramp-signal-foreground = ${colors.xfg}
+ramp-signal-foreground = ${colors.foreground}
 
 click-left = exec nm-applet
 
@@ -257,7 +246,7 @@ interface = enp2s0
 interval = 3.0
 
 format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.xfg}
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -281,7 +270,7 @@ label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = 
-label-muted-foreground = ${colors.xfg}
+label-muted-foreground = ${colors.foreground}
 
 ramp-volume-0 = 􀊠
 ramp-volume-1 = 􀊤
@@ -294,7 +283,7 @@ type = internal/alsa
 format-volume = <ramp-volume> <label-volume>
 
 label-muted = 
-label-muted-foreground = ${colors.xfg}
+label-muted-foreground = ${colors.foreground}
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -336,7 +325,7 @@ ramp-capacity-7 = 􀛨
 ramp-capacity-8 = 􀛨
 ramp-capacity-9 = 􀛨
 ramp-capacity-0-foreground = #de0037
-ramp-capacity-foreground = ${colors.xfg}
+ramp-capacity-foreground = ${colors.foreground}
 
 [module/temperature]
 type = internal/temperature

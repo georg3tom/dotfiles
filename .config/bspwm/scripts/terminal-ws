@@ -3,4 +3,4 @@ termite&
 xdotool key super+alt+shift+j
 xdotool key super+ctrl+j
 xdotool key super+ctrl+7
-termite&
+termite -e cava&

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-EFFECT=blur
+killall betterlockscreen
+EFFECT=
 
     echo $1
 if [[ $1 == "suspend" ]];

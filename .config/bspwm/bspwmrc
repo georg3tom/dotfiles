@@ -1,13 +1,12 @@
 #! /bin/sh
 
-feh --randomize --bg-fill ~/Pictures/Wallpapers
+~/.config/polybar/polybar.sh &
+
+feh --randomize --bg-fill ~/Pictures/Wallpapers/
 
 sxhkd &
 
-# Polybar
-~/.config/polybar/launchi3.sh &
-
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 bspc config border_width         0
 bspc config window_gap          10
@@ -31,11 +30,13 @@ bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a feh state=floating follow=on
 
 # Compton
-compton &
+killall picom;picom -b
 
 # Set Cursor
 xsetroot -cursor_name left_ptr
 
 nm-applet &
-xautolock -time 10 -corners --00 -locker "systemctl suspend"  -notify 30  -notifier "notify-send -u critical '􀎠 xautolock' 'Suspending in 30 secs...'" &
+
+xautolock -time 10 -corners --00 -locker "~/.config/scripts/lock.sh suspend"  -notify 30  -notifier "notify-send -u critical '􀎠 xautolock' 'Suspending in 30 secs...'" &
+
 setxkbmap -option caps:escape

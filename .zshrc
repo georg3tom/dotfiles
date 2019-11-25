@@ -4,6 +4,7 @@
 export LANG=en_IN.UTF-8
 export TERMINAL="termite"
 export EDITOR="nvim"
+export PATH=$PATH:/home/george/.local/bin
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
@@ -111,7 +112,7 @@ alias la='ls -la';
 alias gotop='gotop -c monokai -p -s'
 alias fast='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 alias hotspot='nmcli con up Hotspot ifname wlo1'
-alias hotspotd='nmcli con down Hotspot ifname wlo1'
+alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
 bindkey '^ ' autosuggest-execute
 
