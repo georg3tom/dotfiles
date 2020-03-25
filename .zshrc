@@ -1,14 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.6.0/bin
+export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
 
 export LANG=en_IN.UTF-8
-export TERMINAL="termite"
 export EDITOR="nvim"
-export PATH=$PATH:/home/george/.local/bin
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
-# export FZF_BASE=/usr/share/fzf
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -110,10 +108,12 @@ alias c='clear';
 alias vim='nvim';
 alias la='ls -la';
 alias gotop='gotop -c monokai -p -s'
-alias fast='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python3 -'
 alias hotspot='nmcli con up Hotspot ifname wlo1'
 alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
+alias du='du -ch'
+alias df='df -h'
+
 bindkey '^ ' autosuggest-execute
 
 export FZF_DEFAULT_OPTS='
@@ -121,9 +121,3 @@ export FZF_DEFAULT_OPTS='
 --color info:144,prompt:161,spinner:135,pointer:135,marker:118
 '
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-if [[ $TERM == xterm-termite ]]; then
-  . /etc/profile.d/vte.sh
-  __vte_osc7
-fi

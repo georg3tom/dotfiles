@@ -26,19 +26,19 @@ white: #ffffff;
 
 // black
 * {
-bg: #101010;
+bg: #000000;
 bg-sel: #1a1a1a;
 fg: #ffffff;
 }
 
 * {
   background-color: #00000000;
-  font: "RobotoMono Nerd Font Regular 13";
+  font: "SF Pro Display 13";
 }
 
 window {
-  height: 40%;
-  width: 40%;
+  height: 36%;
+  width: 20%;
   transparency: "real";
 }
 
@@ -72,8 +72,8 @@ element selected {
 }
 
 inputbar {
-  children: [prompt, textbox-prompt-colon, entry];
-  padding: 8 4 4 4;
+  children: [entry];
+  padding: 4 4 4 4;
   /* change this colors to change style*/
   background-color: @red;
   border: 0 0 0 0;
@@ -81,21 +81,10 @@ inputbar {
 }
 
 prompt {
-  enabled: true;
-}
-#prompt {
-  padding: 10 0 0 12;
-  text-color: white;
-  /* font: "RobotoMono 13"; */
-}
-#textbox-prompt-colon {
-  expand: false;
-  str: "::";
-  text-color: white;
-  padding: 8 0 0 0;
+  enabled: false;
 }
 
 entry {
   text-color: @white;
-  padding: 8 12 8 2;
+  padding: 8 12 8 12;
 }

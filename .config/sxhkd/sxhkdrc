@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-    termite
+    st
 
 # program launcher and rofi
 super + d
@@ -55,8 +55,16 @@ super + {t,shift + t,s,f}
     bspc node -t '~{tiled,pseudo_tiled,floating,fullscreen}'
 
 # set the node flags
-super + ctrl + {m,x,y,z}
+super + ctrl + {m,x,s,z}
     bspc node -g {marked,locked,sticky,private}
+
+# set the node flags
+super + v
+    bspc node -g hidden
+
+#unhide last hidden window
+super + {v,shift + v}
+    bspc node {hidden,$(bspc query -N -n .hidden | tail -n1) -g hidden=off}
 
 #
 # focus/swap
@@ -164,7 +172,7 @@ super + a
     ~/.config/rofi/scripts/application_switcher.sh
 
 XF86Search
-    kitty ranger
+    st ranger
 
 super + shift + Insert
     ~/.config/bspwm/scripts/terminal-ws

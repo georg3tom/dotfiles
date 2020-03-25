@@ -23,7 +23,7 @@ case $chosen in
         ~/.config/scripts/lock.sh
         ;;
     $suspend)
-        ~/.config/scripts/lock.sh suspend
+        systemctl suspend
         ;;
     $log_out)
         bspc quit

@@ -1,12 +1,15 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
 call plug#end()
 
@@ -34,6 +37,7 @@ set mouse=a
 set expandtab
 set undofile
 set noshowmode
+set nofoldenable
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             COLORSCHEME                             "
@@ -68,7 +72,8 @@ let g:lightline = {
             \   'colorscheme': 'material',
             \   'active': {
             \     'left':[ [ 'mode', 'paste' ],
-            \              [ 'gitbranch' , 'readonly', 'filename', 'modified' ]
+            \              [ 'gitbranch' ],
+            \              ['readonly', 'filename', 'modified' ]
             \     ],
             \   'right': [ [ 'lineinfo' ], [ 'percent' ], ['status_diagnostic'] , [ 'fileformat',  'filetype' ] ]
             \   },
@@ -80,16 +85,15 @@ let g:lightline.separator = {
             \   'left': '', 'right': ''
             \}
 let g:lightline.subseparator = {
-            \   'left': '', 'right': ''
+            \   'left': '|', 'right': '|'
             \}
-let g:lightline.tabline = {
-            \   'left': [ ['tabs'] ],
-            \   'right': [ ['close'] ]
-            \ }
+" let g:lightline.tabline = {
+"             \   'left': [ ['tabs'] ],
+"             \   'right': [ ['close'] ]
+"             \ }
 let g:lightline.component = {
             \ 'status_diagnostic': '%{StatusDiagnostic()}',
             \ }
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                              coc                                      "
@@ -208,8 +212,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 nmap <C-p> :Files<cr>
 imap <c-x><c-l> <plug>(fzf-complete-line)
-nnoremap <silent> <leader>a :Buffers<CR>
-nnoremap <silent> <leader>A :Windows<CR>
+nnoremap <silent> <leader>\ :Buffers<CR>
+nnoremap <silent> <leader>B :Windows<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>O :BTags<CR>
 nnoremap <silent> <leader>o :Tags<CR>
@@ -301,17 +305,6 @@ nnoremap <A-8> 8gt
 nnoremap <A-9> 9gt
 nnoremap <A-0> 10gt
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                             Save folds                              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufRead * normal zR
-" augroup AutoSaveFolds
-" 	autocmd!
-" 	autocmd BufWinLeave * silent! mkview
-" 	autocmd BufWinEnter * silent! loadview
-" augroup END
-"
-"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Vexplore                                "
@@ -321,3 +314,9 @@ let g:netrw_liststyle = 3
 " let g:netrw_browse_split = 4
 let g:netrw_altv = 1
 let g:netrw_winsize = 25
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Commentary                              "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType c setlocal commentstring=//\ %s
+autocmd FileType cpp setlocal commentstring=//\ %s

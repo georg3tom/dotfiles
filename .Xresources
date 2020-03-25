@@ -1,0 +1,56 @@
+st.font:        Source Code Pro:style:Semibold:size=12:antialias=true
+st.termname:    st-256color
+
+st.borderpx:    8
+
+! Default Dark Colorscheme
+st.color0:       #1C1C1C
+st.color1:       #FF5C57
+st.color10:      #5AF78E
+st.color11:      #F3F99D
+st.color12:      #57C7FF
+st.color13:      #FF6AC1
+st.color14:      #9AEDFE
+st.color15:      #EFF0EB
+st.color2:       #5AF78E
+st.color3:       #F3F99D
+st.color4:       #57C7FF
+st.color5:       #FF6AC1
+st.color6:       #9AEDFE
+st.color7:       #F1F1F0
+st.color8:       #686868
+st.color9:       #FF5C57
+
+/* ! Solarized Light */
+/* #define S_yellow        #b58900 */
+/* #define S_orange        #cb4b16 */
+/* #define S_red           #dc322f */
+/* #define S_magenta       #d33682 */
+/* #define S_violet        #6c71c4 */
+/* #define S_blue          #268bd2 */
+/* #define S_cyan          #2aa198 */
+/* #define S_green         #859900 */
+/* #define S_base03        #fdf6e3 */
+/* #define S_base02        #eee8d5 */
+/* #define S_base01        #93a1a1 */
+/* #define S_base00        #839496 */
+/* #define S_base0         #657b83 */
+/* #define S_base1         #586e75 */
+/* #define S_base2         #073642 */
+/* #define S_base3         #002b36 */
+/* st.color0:                  S_base02 */
+/* st.color1:                  S_red */
+/* st.color2:                  S_green */
+/* st.color3:                  S_yellow */
+/* st.color4:                  S_blue */
+/* st.color5:                  S_magenta */
+/* st.color6:                  S_cyan */
+/* st.color7:                  S_base2 */
+/* st.color9:                  S_orange */
+/* st.color8:                  S_base03 */
+/* st.color10:                 S_base01 */
+/* st.color11:                 S_base00 */
+/* st.color12:                 S_base0 */
+/* st.color13:                 S_violet */
+/* st.color14:                 S_base1 */
+/* st.color15:                 S_base3 */

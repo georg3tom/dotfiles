@@ -4,6 +4,7 @@
 
 ICON="~/Downloads/24px.svg"
 tmp=$(acpi)
-tmp=$(echo $tmp | cut -d "," -f 3)
+time=$(echo $tmp | cut -d "," -f 3)
+per=$(echo $tmp | cut -d "," -f 2)
 echo tmp : $tmp
-dunstify -t 900 -r 2593 -u normal "Time Left" $tmp
+dunstify -t 2000 -r 2593 -u normal "Battery" "$per, $time"
