@@ -113,11 +113,25 @@ alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
 alias du='du -ch'
 alias df='df -h'
+urls()
+{
+    curl -s "https://tinyurl.com/api-create.php?url=$1"
+}
+
+fzf-vim-widget() {
+    FFILE=$(fd --type f --hidden -c never| fzf --preview="cat {}" --preview-window=right:70%:wrap --height 40%)
+    zle reset-prompt
+    if [[ ! -z $FFILE ]]
+    then
+        $EDITOR $FFILE
+    fi
+}
+zle     -N   fzf-vim-widget
 
 bindkey '^ ' autosuggest-execute
+bindkey '^p' fzf-vim-widget
 
 export FZF_DEFAULT_OPTS='
 --color fg:252,hl:67,fg+:252,bg+:235,hl+:81
 --color info:144,prompt:161,spinner:135,pointer:135,marker:118
 '
-
