@@ -1,28 +1,19 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
-
 export LANG=en_IN.UTF-8
 export EDITOR="nvim"
-
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
-source ~/.config/zsh/.purepower
-# source ~/.config/zsh/.george
-POWERLEVEL9K_MODE="nerdfont-complete"
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
-POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=1
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -95,15 +86,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history)
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# User specific aliases and functions
 alias c='clear';
 alias vim='nvim';
 alias la='ls -la';
@@ -119,19 +101,25 @@ urls()
 }
 
 fzf-vim-widget() {
-    FFILE=$(fd --type f --hidden -c never| fzf --preview="cat {}" --preview-window=right:70%:wrap --height 40%)
+    FFILE=$(fd --type f -c never| fzf --preview="cat {}" --preview-window=right:70%:wrap --height 40%)
     zle reset-prompt
     if [[ ! -z $FFILE ]]
     then
         $EDITOR $FFILE
     fi
+    unset FFILE
 }
 zle     -N   fzf-vim-widget
+bindkey '^p' fzf-vim-widget
 
 bindkey '^ ' autosuggest-execute
-bindkey '^p' fzf-vim-widget
 
 export FZF_DEFAULT_OPTS='
 --color fg:252,hl:67,fg+:252,bg+:235,hl+:81
 --color info:144,prompt:161,spinner:135,pointer:135,marker:118
 '
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+[[ ! -f ~/.config/zsh/pure2.zsh ]] || source ~/.config/zsh/pure2.zsh
+
