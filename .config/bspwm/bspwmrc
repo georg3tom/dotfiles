@@ -2,7 +2,7 @@
 
 ~/.config/polybar/polybar.sh &
 
-feh --randomize --bg-fill ~/Pictures/Wallpapers/
+feh --randomize --bg-fill ~/Pictures/Wallpapers/ --no-fehbg
 
 sxhkd &
 
@@ -25,20 +25,23 @@ bspc rule -a St desktop='^1' focus=on follow=on
 bspc rule -a Termite desktop='^1' focus=on follow=on
 bspc rule -a firefox desktop='^2' focus=on follow=on
 bspc rule -a Zathura desktop='^3' focus=on state=tiled follow=on
-bspc rule -a vlc desktop='^4' follow=on focus=on
+bspc rule -a "Microsoft Teams-Preview" desktop='^4' focus=on state=tiled follow=on
 bspc rule -a code-oss desktop='^5' follow=on focus=on
+bspc rule -a vlc desktop='^8' follow=on focus=on
 bspc rule -a Org.gnome.Nautilus desktop='^6' follow=on focus=on
 bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a discord desktop='^9'  follow=on follow=on
+bspc rule -a TelegramDesktop desktop='^9'  follow=on follow=on
 bspc rule -a feh state=floating follow=on
 bspc rule -a ffplay state=floating sticky=on
 
 # Compton
 if [ -x "$(command -v picom)" ]
 then
-    killall picom;picom -b --dbus
+    killall picom;picom -b
 elif [ -x "$(command -v compton)" ]
 then
-    killall compton;compton --config ~/.config/compton/compton.conf -b --dbus
+    killall compton;compton --config ~/.config/compton/compton.conf -b
 fi
 
 # Set Cursor
@@ -46,6 +49,6 @@ xsetroot -cursor_name left_ptr
 
 nm-applet &
 
-xautolock -time 10 -corners --00 -detectsleep -locker "~/.config/scripts/lock.sh -s"  -notify 30  -notifier "notify-send -u critical '􀎠 xautolock' 'Suspending in 30 secs...'" &
+# xautolock -time 10 -corners --00 -detectsleep -locker "~/.config/scripts/lock.sh -s"  -notify 30  -notifier "notify-send -u critical '􀎠 xautolock' 'Suspending in 30 secs...'" &
 
 setxkbmap -option caps:escape
