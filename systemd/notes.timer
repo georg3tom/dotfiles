@@ -1,0 +1,12 @@
+[Unit]
+Description=Auto push notes
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=1h
+Persistent=True
+Unit=notes.service
+
+[Install]
+WantedBy=timers.target
+

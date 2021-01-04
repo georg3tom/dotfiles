@@ -40,11 +40,11 @@ padding-right = 0
 module-margin-left = 2
 module-margin-right = 1
 
-font-0 = "SF Pro Display:style=Regular:size=11;3"
-font-1 = "SF Pro Display:style=Regular:size=14;3"
+font-0 = "SF Pro Display:style=Regular:size=11:antialias=true;3"
+font-1 = "SF Pro Display:style=Regular:size=14:antialias=true;3"
 font-2 = "Jam\-icons:style=Regular:size=13;4"
 
-modules-left = bspwm spotify
+modules-left = bspwm player
 modules-center = date
 modules-right = rec eth memory pulseaudio backlight-acpi battery line
 
@@ -140,15 +140,11 @@ label-urgent = %index%
 label-urgent-foreground = ${colors.alert}
 label-urgent-padding = 2
 
-[module/spotify]
+[module/player]
 type = custom/script
-interval = 1
-format = <label>
-exec = python ~/.config/polybar/scripts/spotify_status.py
-format-background = ${colors.background}
-format-foreground = ${colors.foreground}
-click-right = playerctl play-pause
-click-left = xdotool search ".*spotify.*" windowactivate &> /dev/null
+exec = ~/.config/polybar/scripts/player-mpris-tail.py -f '{icon} {artist} - {title}'
+tail = true
+click-left = ~/.config/polybar/scripts/player-mpris-tail.py play-pause &
 
 [module/mpd]
 type = internal/mpd
@@ -184,6 +180,7 @@ label = %percentage%%
 inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
+enable-scroll = true
 
 [module/cpu]
 type = internal/cpu
@@ -310,16 +307,17 @@ interval = 3600
 type = internal/battery
 battery = BAT0
 adapter = AC
-full-at = 100
+full-at = 99
 
 time-format = %H:%M
 
-label-charging = 􀋥
+label-charging = 􀋥 %percentage%
 ; format-charging = %{A1:$HOME/.config/polybar/scripts/battery:}<label-charging>%{A}
 format-charging = <label-charging>
 
 ; format-discharging = %{A1:$HOME/.config/polybar/scripts/battery:}<ramp-capacity>%{A}
-format-discharging = <ramp-capacity>
+label-discharging = %percentage%
+format-discharging = <ramp-capacity> <label-discharging>
 
 format-full = 􀋦
 format-full-prefix-foreground = #FFFFFF

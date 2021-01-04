@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=Transmission
+Exec=/usr/bin/env /home/george/.config/scripts/transmission %U
+Icon=Transmission

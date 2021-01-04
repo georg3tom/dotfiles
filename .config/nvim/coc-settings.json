@@ -6,16 +6,6 @@
     "suggest.snippetIndicator": "",
     "coc.source.ultisnips.priority": 5,
     "languageserver": {
-        "ccls": {
-            "command": "ccls",
-            "filetypes": ["c", "cpp", "objc", "objcpp"],
-            "rootPatterns": [".ccls", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-            "initializationOptions": {
-                "cache": {
-                    "directory": "/tmp/ccls"
-                }
-            }
-        },
         "dockerfile": {
             "command": "docker-langserver",
             "filetypes": ["Dockerfile"],
@@ -26,5 +16,6 @@
             "filetypes": ["lua"]
         }
     },
-    "python.pythonPath": "python3"
+    "python.pythonPath": "python3",
+    "python.formatting.provider": "black"
 }

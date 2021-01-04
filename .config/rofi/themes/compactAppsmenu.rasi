@@ -2,7 +2,6 @@ configuration {
     drun-display-format: "{icon} {name}";
     display-drun: "Apps";
 	show-icons: true;
-	icon-theme: "Papirus";
 	location: 0;
 	yoffset: 0;
     xoffset: 0;	
@@ -11,7 +10,6 @@ configuration {
 	bw: 0;
     fullscreen: false;
     show-icons: true;
-	terminal: "termite";
 	sidebar-mode: false;
 }
 
@@ -26,10 +24,19 @@ white: #ffffff;
 
 // black
 * {
-bg: #000000;
-bg-sel: #1a1a1a;
+bg: #00000099;
+bg-sel: #00000066;
 fg: #ffffff;
 }
+
+// white
+/*
+* {
+bg: #ffffff4d;
+bg-sel: #ffffff4d;
+fg: #ffffff;
+}
+*/
 
 * {
   background-color: #00000000;
@@ -37,7 +44,7 @@ fg: #ffffff;
 }
 
 window {
-  height: 36%;
+  height: 35%;
   width: 20%;
   transparency: "real";
 }

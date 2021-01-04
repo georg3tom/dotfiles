@@ -1,0 +1,100 @@
+#!/usr/bin/env sh
+
+# Usage:
+# `record`: Ask for recording type via dmenu
+# `record screencast`: Record both audio and screen
+# `record video`: Record only screen
+# `record audio`: Record only audio
+# `record kill`: Kill existing recording
+#
+# If there is already a running instance, user will be prompted to end it.
+
+killrecording() {
+    recpid="$(cat /tmp/recordingpid)"
+    # kill with SIGTERM, allowing finishing touches.
+    kill -15 "$recpid"
+    rm -f /tmp/recordingpid
+    # even after SIGTERM, ffmpeg may still run, so SIGKILL it.
+    sleep 3
+    if [ -n "$recpid" -a -e /proc/$recpid ]; then
+        kill -9 "$recpid"
+    fi
+    exit
+}
+
+screencast() { \
+    ffmpeg -y \
+    -f x11grab \
+    -framerate 60 \
+    -s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
+    -i $DISPLAY \
+    -f pulse -i default \
+    -r 30 \
+    -c:v libx264 -crf 0 -preset ultrafast -c:a mp3 \
+    "$HOME/Pictures/Screencasts/screencast-$(date '+%y.%m.%d-%H:%M').mp4" &
+    echo $! > /tmp/recordingpid
+}
+
+video() { ffmpeg \
+    -f x11grab \
+    -s $(xdpyinfo | grep dimensions | awk '{print $2;}') \
+    -i $DISPLAY \
+    -c:v libx264 -qp 0 -r 30 \
+    "$HOME/Pictures/Screencasts/video-$(date '+%y%m%d-%H%M-%S').mkv" &
+    echo $! > /tmp/recordingpid
+}
+
+webcamhidef() { ffmpeg \
+    -f v4l2 \
+    -i /dev/video0 \
+    -video_size 1920x1080 \
+    "$HOME/Pictures/Screencasts/webcam-$(date '+%y%m%d-%H%M-%S').mkv" & echo $! > /tmp/recordingpid
+}
+
+webcam() { ffmpeg \
+    -f v4l2 \
+    -i /dev/video0 \
+    -video_size 640x480 \
+    "$HOME/Pictures/Screencasts/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
+    echo $! > /tmp/recordingpid
+}
+
+webcamlive() {
+    ffplay -i /dev/video0 -video_size 640x480 -framedrop
+    bspc node -v 500 250
+}
+
+
+audio() { \
+    ffmpeg \
+    -f alsa -i default \
+    -c:a flac \
+    "$HOME/Pictures/Screencasts/audio-$(date '+%y%m%d-%H%M-%S').flac" &
+    echo $! > /tmp/recordingpid
+}
+
+askrecording() { \
+    choice=$(printf "Screencast\\nVideo\\nAudio\\nWebcam\\nWebcam (hi-def)\\nWebcam-Live" |rofi -dmenu -i -p "Select recording style:" -config ~/.config/rofi/themes/appsmenu.rasi)
+    case "$choice" in
+        Screencast) screencast;;
+        Audio) audio;;
+        Video) video;;
+        Webcam) webcam;;
+        Webcam-Live) webcamlive;;
+        "Webcam (hi-def)") webcamhidef;;
+    esac
+}
+
+asktoend() { \
+    response=$(printf "Yes\\nNo" |rofi  -dmenu -i -p "Recording still active. End recording?" -config ~/.config/rofi/themes/appsmenu.rasi) &&
+    [ "$response" = "Yes" ] &&  killrecording
+}
+
+
+case "$1" in
+    screencast) screencast;;
+    audio) audio;;
+    video) video;;
+    kill) killrecording;;
+    *) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
+esac

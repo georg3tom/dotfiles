@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pgrep -x transmission-da || (transmission-daemon && sleep 3)
+transmission-remote -a $@ && notify-send -u normal "􀓃  Transmission" "Torrent Added"

@@ -7,8 +7,11 @@ fi
 
 export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
+export PATH=$PATH:$HOME/.yarn/bin:$HOME/.gem/ruby/2.7.0/bin
 export LANG=en_IN.UTF-8
 export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL='st'
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
@@ -95,6 +98,8 @@ alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
 alias du='du -ch'
 alias df='df -h'
+alias pacs="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print \$2}\")' | xargs -ro  yay -S"
+
 urls()
 {
     curl -s "https://tinyurl.com/api-create.php?url=$1"
@@ -123,3 +128,5 @@ export FZF_DEFAULT_OPTS='
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [[ ! -f ~/.config/zsh/pure2.zsh ]] || source ~/.config/zsh/pure2.zsh
 
+source ~/.config/nnn/nnn.sh
+source ~/.config/zsh/notes.zsh

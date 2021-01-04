@@ -1,0 +1,6 @@
+[Unit]
+Description=Auto push notes
+
+[Service]
+Type=oneshot
+ExecStart=/home/george/.config/scripts/pushnotes.sh

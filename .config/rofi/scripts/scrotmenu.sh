@@ -10,18 +10,23 @@ window=""
 options="$screen\n$area\n$window"
 
 chosen="$(echo -e "$options" | $rofi_command -dmenu -selected-row 1)"
+NOW=$(date '+%Y%b%d::%H%M%S');
+FILENAME=~/Pictures/Screenshots/$NOW.png
 case $chosen in
     $screen)
-        sleep 1; scrot ~/Pictures/Screenshots/%b%d::%H%M%S.png && \
-        notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots"
+        sleep 0.3; scrot $FILENAME && \
+        notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots" \
+		&& xclip -selection clipboard -t image/png -i $FILENAME
         ;;
     $area)
-        scrot -s ~/Pictures/Screenshots/%b%d::%H%M%S.png && \
-        notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots"
+        scrot -s $FILENAME && \
+        notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots" \
+		&& xclip -selection clipboard -t image/png -i $FILENAME
         ;;
     $window)
-        sleep 1; scrot -u ~/Pictures/Screenshots/%b%d::%H%M%S.png && \
-        notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots"
+        sleep 0.3; scrot -u $FILENAME && \
+        notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots" \
+		&& xclip -selection clipboard -t image/png -i $FILENAME
         ;;
 esac
 

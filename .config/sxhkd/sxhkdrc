@@ -98,7 +98,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-    bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 #
 # preselect
@@ -162,7 +162,7 @@ XF86Audio{Play,Next,Prev}
 Print
     ~/.config/rofi/scripts/scrotmenu.sh
 shift+Print
-    ~/.config/scripts/rofirecord
+    ~/.config/rofi/scripts/rofirecord
 
 #Network menu
 super + n
@@ -172,7 +172,13 @@ super + a
     ~/.config/rofi/scripts/application_switcher.sh
 
 XF86Search
-    st ranger
+    ~/.config/rofi/scripts/monitor_layout.sh
 
 super + shift + Insert
     ~/.config/bspwm/scripts/terminal-ws
+
+super + F7
+	~/.config/scripts/autoBrightness.sh
+
+super + shift + y
+    zathura & termite

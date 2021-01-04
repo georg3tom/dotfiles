@@ -17,7 +17,8 @@ while [[ "$#" -gt 0 ]]; do
     -i|--image)
         LOCK=
         RES=$(xrandr -q | head -3 | tail -1 | awk '{print $1}')
-        convert "$2" -resize "$RES" -blur 0x6 "$IMGPATH"
+        convert "$2" -resize "$RES" "$IMGPATH"
+        # convert "$2" -resize "$RES" -blur 0x6 "$IMGPATH"
         shift 2
         ;;
     -S|--systemd)
