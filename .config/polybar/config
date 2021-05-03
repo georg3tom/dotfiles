@@ -46,7 +46,7 @@ font-2 = "Jam\-icons:style=Regular:size=13;4"
 
 modules-left = bspwm player
 modules-center = date
-modules-right = rec eth memory pulseaudio backlight-acpi battery line
+modules-right = rec crypto eth memory pulseaudio backlight-acpi battery line
 
 tray-position = right
 tray-padding = 6
@@ -413,5 +413,10 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
+[module/crypto]
+type = custom/script
+interval = 300
+exec = /home/george/.config/polybar/scripts/crypto.py
 
 ; vim:ft=dosini

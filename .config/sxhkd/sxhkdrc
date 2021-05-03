@@ -179,6 +179,3 @@ super + shift + Insert
 
 super + F7
 	~/.config/scripts/autoBrightness.sh
-
-super + shift + y
-    zathura & termite

@@ -22,6 +22,7 @@ case $chosen in
         scrot -s $FILENAME && \
         notify-send "􀏫 Cheese!" "Screeshot saved to ~/Pictures/Screenshots" \
 		&& xclip -selection clipboard -t image/png -i $FILENAME
+        rm $FILENAME
         ;;
     $window)
         sleep 0.3; scrot -u $FILENAME && \
