@@ -1,9 +1,13 @@
 configuration {
-  show-icons:         true;
-  cycle:              true;
-  hide-scrollbar:     true;
-  disable-history:    false;
-  modi:               "drun";
-  display-drun:       "apps";
-  columns: 2;
+  show-icons:      true;
+  /* icon-theme:      "Papirus"; */
+  cycle:           true;
+  hide-scrollbar:  true;
+  disable-history: false;
+  monitor:         "-4";
+  modi:            "drun";
+  display-drun:    "apps";
+  columns:         2;
 }
+
+@import "themes/shared/active-colorscheme.rasi"

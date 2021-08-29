@@ -1,12 +1,15 @@
 /**
- * This theme is intended for a 8 items list on a 1920x1080 pixels resolution.
- * You may have to tweak values such as the window padding if you have a different resolution.
+ * This theme is intended for a 8 items list menu with a headerbar.
  */
+configuration {
+  show-icons: false;
+  columns: 1;
+}
 @import "shared/settings.rasi"
 * {
   background-color: @background;
   text-color: @foreground-list;
-  font: @text-font;
+  font: @text-font-mono;
 }
 #window {
   padding: @list-8-window-padding;
@@ -19,22 +22,23 @@ entry {
 }
 #inputbar {
   children: [ prompt, textbox-prompt-colon, entry ];
-  margin: @inputbar-margin;
+  margin: @all-inputbar-margin;
 }
 #prompt {
-  padding: @prompt-padding;
+  padding: @all-prompt-padding;
+  background-color: @accent;
   text-color: @background;
 }
 #textbox-prompt-colon {
   expand: false;
-  str: " 﫸 ";
+  str: "  ";
   text-color: @accent;
-  padding: @nmvpn-textbox-prompt-colon-padding;
+  padding: @i3-keybindings-textbox-prompt-colon-padding;
   font: @icon-font-small;
 }
 #entry {
   text-color: @accent;
-  padding: @entry-padding;
+  padding: @all-entry-padding;
 }
 #element {
   padding: @list-element-padding;
@@ -46,16 +50,6 @@ entry {
 #element.selected {
   background-color: @background-focus;
   text-color: @accent;
-  border-color: @accent;
-}
-#element.active {
-  background-color: @on;
-  text-color: @background;
-  border-color: @on;
-}
-#element.selected.active {
-  background-color: @off;
-  text-color: @background;
   border-color: @accent;
 }
 

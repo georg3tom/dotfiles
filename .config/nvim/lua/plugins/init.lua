@@ -1,18 +1,17 @@
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 
 if fn.empty(fn.glob(install_path)) > 0 then
 	fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
 
-vim.cmd [[packadd packer.nvim]]
-
 return require('packer').startup(function()
 	use 'wbthomason/packer.nvim'
 
 	use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use {'nvim-treesitter/nvim-treesitter-textobjects', run = ':TSUpdate' }
 	use {"windwp/nvim-autopairs"}
 	use {
 		'nvim-telescope/telescope.nvim',
@@ -20,11 +19,10 @@ return require('packer').startup(function()
 	}
 	use {"terrortylor/nvim-comment"}
 
-	use {"christianchiarulli/nvcode-color-schemes.vim"}
-
 	use {
-		'glepnir/galaxyline.nvim',
-		branch = 'main',
+        'hoob3rt/lualine.nvim',
+		-- 'glepnir/galaxyline.nvim',
+		-- branch = 'main',
 		requires = {'kyazdani42/nvim-web-devicons'}
 	}
 
@@ -33,6 +31,10 @@ return require('packer').startup(function()
 	use {"hrsh7th/vim-vsnip"}
 	use {"rafamadriz/friendly-snippets"}
 
+	use {"norcalli/nvim-colorizer.lua"}
+    require('colorizer').setup()
+
+    use 'arcticicestudio/nord-vim'
 
     use {
         'lewis6991/gitsigns.nvim',
@@ -42,10 +44,11 @@ return require('packer').startup(function()
     }
 
 	require("plugins.treesitter")
-	require("plugins.galaxyline")
+	require("plugins.lualine")
 	require("plugins.comment")
 	require("plugins.telescope")
-	require("plugins.colorscheme")
 	require("plugins.gitsigns")
 	require("plugins.autopairs")
+	require("plugins.compe")
+	require("plugins.colorscheme")
 end)

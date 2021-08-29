@@ -1,9 +1,9 @@
 /**
  * Settings used in every rofi option menu:
- *  - i3layoutmenu
- *  - mpdmenu
- *  - powermenu
- *  - scrotmenu
+ *  - i3-layout
+ *  - music
+ *  - power
+ *  - screenshot
  */
 @import "settings.rasi"
 * {
@@ -22,8 +22,8 @@
 }
 #element {
   padding: @option-element-padding;
-  background-color: @background-light-alt;
-  border-radius:20px;
+  background-color: @background-light;
+  border-radius : 20px;
 }
 #element.selected {
   background-color: @accent;

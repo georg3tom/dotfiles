@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 if ! pgrep -x polybar ; then
-	polybar -q classic
+	polybar -q bar
 else
 	pkill polybar
-	polybar -q classic
+	polybar -q bar
 fi

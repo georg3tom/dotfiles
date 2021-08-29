@@ -13,10 +13,10 @@
 ;==========================================================
 include-file = ~/.config/polybar/colors.ini
 
-[bar/classic]
+[bar/bar]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 30
+height = 35
 ;offset-x = 1%
 ;offset-y = 1%
 radius = 0
@@ -25,17 +25,8 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
-
-border-top-size = 0
-border-bottom-size = 0
-border-right-size = 0
-border-left-size = 0
-border-color = #000000
-
-padding-left = 0
-padding-right = 0
+border-bottom-size = 2
+border-bottom-color = ${colors.color8}
 
 module-margin-left = 2
 module-margin-right = 1
@@ -46,7 +37,7 @@ font-2 = "Jam\-icons:style=Regular:size=13;4"
 
 modules-left = bspwm player
 modules-center = date
-modules-right = rec crypto eth memory pulseaudio backlight-acpi battery line
+modules-right = rec eth memory pulseaudio backlight-acpi battery dunst line
 
 tray-position = right
 tray-padding = 6
@@ -54,6 +45,7 @@ tray-background = ${colors.background}
 
 wm-restack = bspwm
 
+enable-ipc = true
 override-redirect = true
 
 ;scroll-up = bspwm-desknext
@@ -62,12 +54,14 @@ override-redirect = true
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
+label-urgent-foreground = ${colors.background-alt}
+label-urgent-background = ${colors.color9}
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+format = <label>
+label = %title%
+label-maxlen = 30
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -80,26 +74,15 @@ label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-foreground = ${colors.foreground}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
 [module/bspwm]
 type = internal/bspwm
 format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
-
 label-focused = %index%
-label-focused-foreground = #ffffff
-label-focused-background = #4b5cc4
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.xbs}
 label-focused-padding = 3
 
 label-occupied = %index%
@@ -110,35 +93,7 @@ label-urgent-foreground = ${colors.alert}
 label-urgent-padding = 3
 
 label-empty =
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
 
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-label-focused = %index%
-label-focused-foreground = #ffffff
-label-focused-background = #4b5cc4
-label-focused-padding = 3
-
-label-unfocused = %index%
-label-unfocused-padding = 3
-
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-padding = ${self.label-focused-padding}
-
-label-urgent = %index%
-label-urgent-foreground = ${colors.alert}
-label-urgent-padding = 2
 
 [module/player]
 type = custom/script
@@ -193,7 +148,6 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix = "􀐞 "
-format-prefix-foreground = ${colors.foreground}
 label = %percentage_used%%
 format = <label>
 
@@ -261,7 +215,8 @@ time = %H:%M
 time-alt = %H:%M
 
 label = %date% %time%
-format = 􀐫 <label>
+format =  <label>
+format-foreground = ${colors.foreground}
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -269,9 +224,10 @@ type = internal/pulseaudio
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
+click-right = pavucontrol
 
 label-muted = 
-label-muted-foreground = ${colors.foreground}
+label-muted-foreground = ${colors.color4}
 
 ramp-volume-0 = 􀊠
 ramp-volume-1 = 􀊤
@@ -295,7 +251,7 @@ ramp-volume-3 = 
 type = custom/script
 exec = ~/.config/polybar/scripts/rec.sh
 format = <label>
-format-foreground = #FF5C57
+format-foreground = ${colors.color9}
 interval = 2
 
 [module/updates-arch]
@@ -363,6 +319,14 @@ ramp-1 = 􀇬
 ramp-2 = 􀇬
 ramp-foreground = ${colors.foreground-alt}
 
+[module/mic-muter]
+type = custom/ipc
+hook-0 = amixer set Capture nocap; echo " M "
+hook-1 = amixer set Capture cap; echo " A "
+initial = 1
+click-left = polybar-msg -p %pid% hook mic-muter 1
+click-right = polybar-msg -p %pid% hook mic-muter 2
+
 [module/headphone]
 type = custom/script
 exec = echo "􀑈"
@@ -372,35 +336,6 @@ interval = 2
 [module/line]
 type = custom/text
 content="%{T2}|%{T-}"
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
@@ -418,5 +353,14 @@ margin-bottom = 5
 type = custom/script
 interval = 300
 exec = /home/george/.config/polybar/scripts/crypto.py
+
+[module/dunst]
+type = custom/ipc
+initial = 1
+format-foreground = ${colors.color3}
+format-background = ${colors.background}
+
+hook-0 = echo "%{A1: dunstctl set-paused true && polybar-msg hook dunst 2:}  %{A}" &
+hook-1 = echo "%{A1: dunstctl set-paused false && polybar-msg hook dunst 1:} %{F#81A1C1}%{F-} %{A}" &
 
 ; vim:ft=dosini

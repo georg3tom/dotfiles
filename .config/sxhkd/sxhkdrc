@@ -8,7 +8,7 @@ super + Return
 
 # program launcher and rofi
 super + d
-    ~/.config/rofi/scripts/appsmenu.sh
+    ~/.config/rofi/scripts/rofi-apps
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -22,7 +22,7 @@ super + Escape
 # super + shift + {q,r}
 #     bspc {quit,wm -r}
 super + {shift + r,e,shift + e}
-    {bspc wm -r,~/.config/rofi/scripts/powermenu.sh,~/.config/scripts/lock.sh}
+    {bspc wm -r,~/.config/rofi/scripts/rofi-power,~/.config/scripts/lock.sh}
 
 # close and kill
 # super + {_,shift + }w
@@ -160,19 +160,19 @@ XF86Audio{Play,Next,Prev}
 
 #Screenshot
 Print
-    ~/.config/rofi/scripts/scrotmenu.sh
+    ~/.config/rofi/scripts/rofi-screenshot
 shift+Print
-    ~/.config/rofi/scripts/rofirecord
+    ~/.config/rofi/scripts/rofi-record
 
 #Network menu
 super + n
-    ~/.config/rofi/scripts/networkmenu.py
+    ~/.config/rofi/scripts/rofi-network
 
 super + a
-    ~/.config/rofi/scripts/application_switcher.sh
+    ~/.config/rofi/scripts/rofi-appswitch
 
 XF86Search
-    ~/.config/rofi/scripts/monitor_layout.sh
+    ~/.config/rofi/scripts/rofi-monitor
 
 super + shift + Insert
     ~/.config/bspwm/scripts/terminal-ws

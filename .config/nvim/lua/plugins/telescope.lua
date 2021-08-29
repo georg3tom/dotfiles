@@ -2,14 +2,28 @@ local actions = require('telescope.actions')
 
 require('telescope').setup{
   defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
+    prompt_prefix = "$ ",
+    selection_caret = "❯ ",
+    selection_strategy = "reset",
+    sorting_strategy = "ascending",
+    layout_strategy = "center",
+    layout_config = {
+      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+
+      width = function(_, max_columns, _)
+        return math.min(max_columns - 3, 80)
+      end,
+
+      height = function(_, _, max_lines)
+        return math.min(max_lines - 4, 15)
+      end,
+    },
+    border = true,
+    borderchars = {
+      { "─", "│", "─", "│", "╭", "╮", "╯", "╰"},
+      prompt = {"─", "│", " ", "│", "╭", "╮", "│", "│"},
+      results = {"─", "│", "─", "│", "├", "┤", "╯", "╰"},
+      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰"},
     },
     mappings = {
         i = {
@@ -24,42 +38,6 @@ require('telescope').setup{
             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         },
     },
-    prompt_position = "bottom",
-    prompt_prefix = "❯ ",
-    selection_caret = "❯ ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "vertical",
-    layout_defaults = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {},
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    shorten_path = true,
-    winblend = 0,
-    width = 0.75,
-    preview_cutoff = 120,
-    results_height = 1,
-    results_width = 0.8,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   }
 }
 
@@ -67,6 +45,27 @@ local mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(mode, key, "<cmd>lua "..result.."<cr>", {noremap = true, silent = true})
 end
 
-mapper('n', '<C-p>', "require('telescope.builtin').find_files()")
+local M = {}
+
+function git_find_files()
+    local results = require('telescope.utils').get_os_command_output({'git', 'rev-parse', '--git-dir'})
+
+    if results[1] then
+        require('telescope.builtin').git_files()
+    else
+        require('telescope.builtin').find_files()
+    end
+end
+
+function search_dotfiles()
+    require("telescope.builtin").find_files({
+        prompt_title = "< VimRC >",
+        cwd = "$HOME/.config/nvim/",
+    })
+end
+
+mapper('n', '<C-p>', "git_find_files()")
+mapper('', '<leader>r', "search_dotfiles()")
+mapper('', '<leader>p', "require('telescope.builtin').find_files()")
 mapper('', '<leader>\\', "require('telescope.builtin').buffers{ show_all_buffers = true }")
 mapper('', '<leader>g', "require('telescope.builtin').live_grep()")

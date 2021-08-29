@@ -2,31 +2,30 @@
  * This theme is intended for a 6 items option menu with a headerbar.
  */
 @import "shared/option-menu.rasi"
-* {
-  font: @text-font;
-}
 #window {
-  padding: @mpd-window-padding;
+  font: @text-font;
+  padding: @music-window-padding;
   children: [ inputbar, horibox ];
 }
 #inputbar {
   children: [ textbox-prompt-colon, prompt ];
-  margin: @mpd-inputbar-margin;
+  margin: @music-inputbar-margin;
 }
 prompt,
 textbox-prompt-colon {
-  padding: @mpd-prompt-padding;
+  font: @text-font;
+  padding: @music-prompt-padding;
   border: 2px;
   border-color: @accent;
 }
 #prompt {
-  margin: @mpd-prompt-margin;
+  margin: @music-prompt-margin;
   background-color: @background-light;
   text-color: @accent;
 }
 #textbox-prompt-colon {
   expand: false;
-  str: "mpd";
+  str: "music";
   background-color: @accent;
   text-color: @background;
 }
@@ -39,8 +38,8 @@ textbox-prompt-colon {
 }
 #element {
   font: @icon-font;
-  border: @mpd-element-border;
-  padding: @mpd-element-padding;
+  border: @music-element-border;
+  padding: @music-element-padding;
   border-color: @background-light;
 }
 #element.selected {

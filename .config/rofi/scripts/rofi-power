@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+#
+# A rofi powered menu to execute power related action.
+# Uses: amixer mpc poweroff reboot rofi rofi-prompt
+
+power_off=''
+reboot=''
+lock=''
+suspend='鈴'
+log_out=''
+
+chosen=$(printf '%s;%s;%s;%s;%s\n' "$power_off" "$reboot" "$lock" "$suspend" \
+                                   "$log_out" \
+    | rofi -theme 'themes/power.rasi' \
+           -dmenu \
+           -sep ';' \
+           -selected-row 2)
+
+case "$chosen" in
+    "$power_off")
+        ~/.config/rofi/scripts/rofi-prompt --query 'Shutdown?' && poweroff
+        ;;
+
+    "$reboot")
+        ~/.config/rofi/scripts/rofi-prompt --query 'Reboot?' && reboot
+        ;;
+
+    "$lock")
+        ~/.config/scripts/lock.sh
+        ;;
+
+    "$suspend")
+        systemctl suspend
+        ;;
+
+    "$log_out")
+        bscp quit
+        ;;
+
+    *) exit 1 ;;
+esac

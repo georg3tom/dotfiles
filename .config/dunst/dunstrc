@@ -12,17 +12,19 @@
 [global]
     monitor = 0
     follow = mouse
-    geometry = "300x6-10+35"
+    geometry = "300x6-5+40"
     indicate_hidden = yes
     shrink = no
     notification_height = 15
     separator_height = 1
     padding = 10
+    progress_bar = true
     horizontal_padding = 10
     frame_width = 2
-    frame_color = "#333333"
+    frame_color = "#4C566A"
     separator_color = frame
     sort = yes
+    markup = full
     idle_threshold = 120
     font = SF Pro Display 12
     line_height = 0
@@ -34,12 +36,12 @@
     ellipsize = middle
     ignore_newline = no
     stack_duplicates = true
-    hide_duplicate_count = false
-    show_indicators = yes
+    hide_duplicate_count = true
+    show_indicators = no
     icon_position = left
     max_icon_size = 48
     icon_path = /usr/share/icons/Adwaita/48x48/status/:/usr/share/icons/Adwaita/48x48/devices/:/usr/share/icons/Adwaita/48x48/apps/
-    # icon_path = /usr/share/icons/Papirus/48x48/status/:/usr/share/icons/Papirus/48x48/devices/:/usr/share/icons/Numix-Circle/48x48/apps/
+    # icon_path = /usr/share/icons/Papirus/48x48/status/:/usr/share/icons/Papirus/48x48/devices/:/usr/share/icons/Papirus/48x48/apps/
     # icon_path = /usr/share/icons/Adwaita/status/:/usr/share/icons/Adwaita/devices/:/usr/share/icons/Numix-Circle/48/apps/
     sticky_history = yes
     history_length = 20
@@ -62,18 +64,18 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the '#' and following  would be interpreted as a comment.
-    background="#262626"
+    background="#3B4252"
     foreground="#f5f5f5"
-    timeout = 2
+    timeout = 7
 
 
 [urgency_normal]
-    background="#262626" #3a3a3a
+    background="#3B4252" 
     foreground="#f5f5f5"
-    timeout = 3
+    timeout = 8
 
 
 [urgency_critical]
-    background="#FF5C57"
+    background="#BF616A"
     foreground="#f5f5f5"
-    timeout = 5
+    timeout = 15

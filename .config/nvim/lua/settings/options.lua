@@ -1,25 +1,27 @@
-vim.o.termguicolors = true
-vim.o.showcmd = false
-vim.o.showmode = false
-vim.o.smartindent = true
-vim.o.splitbelow = true
-vim.o.splitright = true
-vim.o.lazyredraw = true
-vim.o.mouse = "a"
-vim.o.completeopt = "menuone,noselect"
+local opt = vim.opt
+opt.termguicolors = true
+opt.showmode = false
+opt.smartindent = true
+opt.splitbelow = true
+opt.splitright = true
+opt.lazyredraw = true
+opt.mouse = "a"
+opt.completeopt = "menuone,noselect"
+opt.updatetime = 300
+opt.hidden = true
+opt.undofile = true
+opt.relativenumber = true
+opt.number = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.expandtab = true
+opt.scrolloff = 10
+opt.colorcolumn = "88"
+opt.shortmess = opt.shortmess +"c"
+-- opt.inccommand = "split"
+-- opt.cursorline = true
 
-vim.cmd [[
-set autoindent
-set expandtab
-set smartindent
-set tabstop=4
-set shiftwidth=4
-]]
-
-vim.wo.colorcolumn = "88"
-vim.wo.number = true 
-vim.wo.relativenumber = true 
-vim.wo.cursorline = true 
-vim.wo.listchars = "tab:┆·,trail:·" 
-
-vim.cmd("set undofile")
+-- vim.cmd [[
+-- set list listchars=tab:┆·,trail:·
+-- ]]

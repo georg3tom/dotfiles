@@ -1,8 +1,8 @@
 /**
  * Allows to change the settings of every menu simply by editing this file
  */
-@import "colorschemes/dark-rice.rasi"
 @import "resolutions/1920x1080.rasi"
+/* @import "resolutions/1366x768.rasi" */
 
 #window {
   width: 100%;

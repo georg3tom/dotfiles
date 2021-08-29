@@ -34,6 +34,6 @@ done
 
 if [[ $LOCK ]]
 then
-$APP -i $IMGPATH -c 000000 -e -f && \
+$APP -i $IMGPATH -c 000000 -e -t -f && \
     { [[ $SUSPEND ]] && systemctl suspend; }
 fi
