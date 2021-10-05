@@ -4,27 +4,6 @@ require('telescope').setup{
   defaults = {
     prompt_prefix = "$ ",
     selection_caret = "❯ ",
-    selection_strategy = "reset",
-    sorting_strategy = "ascending",
-    layout_strategy = "center",
-    layout_config = {
-      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
-
-      width = function(_, max_columns, _)
-        return math.min(max_columns - 3, 80)
-      end,
-
-      height = function(_, _, max_lines)
-        return math.min(max_lines - 4, 15)
-      end,
-    },
-    border = true,
-    borderchars = {
-      { "─", "│", "─", "│", "╭", "╮", "╯", "╰"},
-      prompt = {"─", "│", " ", "│", "╭", "╮", "│", "│"},
-      results = {"─", "│", "─", "│", "├", "┤", "╯", "╰"},
-      preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰"},
-    },
     mappings = {
         i = {
             ["<C-j>"] = actions.move_selection_next,
@@ -38,14 +17,38 @@ require('telescope').setup{
             ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         },
     },
-  }
+  },
+  pickers = {
+    find_files = {
+      theme = "dropdown",
+    },
+    live_grep = {
+      theme = "dropdown",
+    },
+    git_files = {
+      theme = "dropdown",
+    },
+    buffers = {
+      theme = "dropdown",
+    },
+  },
+  extensions = {
+    fzf = {
+      fuzzy = true,                    -- false will only do exact matching
+      override_generic_sorter = true,  -- override the generic sorter
+      override_file_sorter = true,     -- override the file sorter
+      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                       -- the default case_mode is "smart_case"
+    }
+  },
 }
+
+
+require('telescope').load_extension('fzf')
 
 local mapper = function(mode, key, result)
   vim.api.nvim_set_keymap(mode, key, "<cmd>lua "..result.."<cr>", {noremap = true, silent = true})
 end
-
-local M = {}
 
 function git_find_files()
     local results = require('telescope.utils').get_os_command_output({'git', 'rev-parse', '--git-dir'})
