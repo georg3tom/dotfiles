@@ -18,9 +18,8 @@
 --- | --- | ---
 1 | OS | [Arch Linux](https://www.archlinux.org/)
 2 | WM | [BSPWM](https://github.com/baskerville/bspwm)
-3 | Terminal Emulator | [st](https://github.com/georg3tom/st)
+3 | Terminal Emulator | [Alacritty](https://github.com/alacritty/alacritty)
 4 | Compositor | [picom](https://github.com/yshui/picom)
 5 | Editor | [Neovim](https://github.com/neovim/neovim/)
 6 | PDF Viewer | [Zathura](https://github.com/pwmt/zathura)
 7 | Status Bar | [Polybar](https://github.com/polybar/polybar)
-

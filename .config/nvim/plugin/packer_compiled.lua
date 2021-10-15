@@ -97,6 +97,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/george/.local/share/nvim/site/pack/packer/start/cmp_luasnip"
   },
+  ["express_line.nvim"] = {
+    loaded = true,
+    path = "/home/george/.local/share/nvim/site/pack/packer/start/express_line.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/george/.local/share/nvim/site/pack/packer/start/friendly-snippets"
@@ -104,10 +108,6 @@ _G.packer_plugins = {
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/george/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
-  },
-  ["lualine.nvim"] = {
-    loaded = true,
-    path = "/home/george/.local/share/nvim/site/pack/packer/start/lualine.nvim"
   },
   ["nord-vim"] = {
     loaded = true,
@@ -164,10 +164,6 @@ _G.packer_plugins = {
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/george/.local/share/nvim/site/pack/packer/start/telescope.nvim"
-  },
-  ["which-key.nvim"] = {
-    loaded = true,
-    path = "/home/george/.local/share/nvim/site/pack/packer/start/which-key.nvim"
   }
 }
 

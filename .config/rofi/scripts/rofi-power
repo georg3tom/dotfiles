@@ -11,7 +11,7 @@ log_out=''
 
 chosen=$(printf '%s;%s;%s;%s;%s\n' "$power_off" "$reboot" "$lock" "$suspend" \
                                    "$log_out" \
-    | rofi -theme 'themes/power.rasi' \
+    | rofi -theme-str '@import "power.rasi"' \
            -dmenu \
            -sep ';' \
            -selected-row 2)
@@ -26,15 +26,19 @@ case "$chosen" in
         ;;
 
     "$lock")
+        # TODO Add your lockscreen command.
         ~/.config/scripts/lock.sh
         ;;
 
     "$suspend")
+        # Pause music and mute volume before suspending.
+        # TODO Add your suspend command.
         systemctl suspend
         ;;
 
     "$log_out")
-        bscp quit
+        # TODO Add your log out command.
+        bspc quit
         ;;
 
     *) exit 1 ;;

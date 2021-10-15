@@ -11,7 +11,7 @@ export PATH=$PATH:$HOME/.yarn/bin:$HOME/.gem/ruby/2.7.0/bin
 export LANG=en_IN.UTF-8
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL='st'
+export TERMINAL='alacritty'
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
@@ -92,13 +92,17 @@ ZSH_AUTOSUGGEST_STRATEGY=(history)
 alias c='clear';
 alias vim='nvim';
 alias la='ls -la';
-alias gotop='gotop -c monokai -p -s'
+# alias gotop='gotop -c monokai -p -s'
 alias hotspot='nmcli con up Hotspot ifname wlo1'
 alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
 alias du='du -ch'
 alias df='df -h'
-alias pacs="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print \$2}\")' | xargs -ro  yay -S"
+alias i="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print \$2}\")' | xargs -ro  yay -S"
+alias mv="mv -iv"
+alias cp="cp -riv"
+alias mkdir='mkdir -vp'
+alias wgetall='wget -r -np -nH --cut-dirs=3 -R index.html'
 
 urls()
 {
@@ -119,9 +123,11 @@ bindkey '^p' fzf-vim-widget
 
 bindkey '^ ' autosuggest-execute
 
-export FZF_DEFAULT_OPTS='
---color fg:252,hl:67,fg+:252,bg+:235,hl+:81
---color info:144,prompt:161,spinner:135,pointer:135,marker:118
+export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
+--color=dark
+--color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
+--color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
+
 '
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

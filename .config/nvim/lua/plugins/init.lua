@@ -21,13 +21,11 @@ return require('packer').startup(function()
     use {'terrortylor/nvim-comment'}
 
     use {
-        'hoob3rt/lualine.nvim',
+        'tjdevries/express_line.nvim',
         -- 'glepnir/galaxyline.nvim',
         -- branch = 'main',
         requires = {'kyazdani42/nvim-web-devicons'}
     }
-
-    use {'folke/which-key.nvim'}
 
     use {'neovim/nvim-lspconfig'}
     use {'hrsh7th/nvim-cmp'}
@@ -57,11 +55,11 @@ return require('packer').startup(function()
     }
 
     require('plugins.treesitter')
-    require('plugins.lualine')
+    require('plugins.el')
     require('plugins.comment')
     require('plugins.telescope')
     require('plugins.gitsigns')
-    require('plugins.autopairs')
     require('plugins.cmp')
+    require('plugins.autopairs')
     require('plugins.colorscheme')
 end)

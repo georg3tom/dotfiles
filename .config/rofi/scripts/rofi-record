@@ -74,7 +74,7 @@ audio() { \
 }
 
 askrecording() { \
-    choice=$(printf "Screencast\\nVideo\\nAudio\\nWebcam\\nWebcam (hi-def)\\nWebcam-Live" |rofi -dmenu -i -p "Select recording style:" -theme 'themes/apps.rasi')
+    choice=$(printf "Screencast\\nVideo\\nAudio\\nWebcam\\nWebcam (hi-def)\\nWebcam-Live" |rofi -dmenu -i -p "Select recording style:" -theme-str '@import "apps.rasi"')
     case "$choice" in
         Screencast) screencast;;
         Audio) audio;;
@@ -86,7 +86,7 @@ askrecording() { \
 }
 
 asktoend() { \
-    response=$(printf "Yes\\nNo" |rofi  -dmenu -i -p "Recording still active. End recording?" --theme 'themes/apps.rasi') &&
+    response=$(printf "Yes\\nNo" |rofi  -dmenu -i -p "Recording still active. End recording?" -theme-str '@import "apps.rasi"') &&
     [ "$response" = "Yes" ] &&  killrecording
 }
 

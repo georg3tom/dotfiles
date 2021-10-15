@@ -3,6 +3,6 @@
 # Rofi powered menu to start apps.
 # Uses: rofi
 
-rofi -theme 'themes/apps.rasi' \
+rofi -theme-str '@import "apps.rasi"' \
      -no-lazy-grab \
      -show drun

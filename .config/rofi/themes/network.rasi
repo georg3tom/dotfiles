@@ -3,7 +3,6 @@
  */
 configuration {
   show-icons: false;
-  columns: 1;
 }
 @import "shared/settings.rasi"
 * {
@@ -44,10 +43,13 @@ entry {
   padding: @list-element-padding;
   margin: @list-element-margin;
   border: @list-element-border;
+}
+element.alternate.normal,
+element.normal.normal {
   background-color: @background-light;
   border-color: @background-light;
 }
-#element.selected {
+element.selected.normal {
   background-color: @background-focus;
   text-color: @accent;
   border-color: @accent;

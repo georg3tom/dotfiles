@@ -1,21 +1,21 @@
 local nvim_lsp = require('lspconfig')
 
-vim.fn.sign_define(
-    "LspDiagnosticsSignError",
-    {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
-)
-vim.fn.sign_define(
-    "LspDiagnosticsSignWarning",
-    {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"}
-)
-vim.fn.sign_define(
-    "LspDiagnosticsSignHint",
-    {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"}
-)
-vim.fn.sign_define(
-    "LspDiagnosticsSignInformation",
-    {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
-)
+-- vim.fn.sign_define(
+--     "LspDiagnosticsSignError",
+--     {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
+-- )
+-- vim.fn.sign_define(
+--     "LspDiagnosticsSignWarning",
+--     {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"}
+-- )
+-- vim.fn.sign_define(
+--     "LspDiagnosticsSignHint",
+--     {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"}
+-- )
+-- vim.fn.sign_define(
+--     "LspDiagnosticsSignInformation",
+--     {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
+-- )
 
 
 local on_attach = function(client, bufnr)
@@ -45,52 +45,84 @@ local on_attach = function(client, bufnr)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "<space>fr", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   end
   if client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("v", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+    buf_set_keymap("v", "<space>fr", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
   end
 
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
-      hi LspReferenceRead cterm=bold ctermbg=red guibg=#434C5E
-      hi LspReferenceText cterm=bold ctermbg=red guibg=#434C5E
-      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#434C5E
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
+    hi LspReferenceRead cterm=bold ctermbg=red guibg=#434C5E
+    hi LspReferenceText cterm=bold ctermbg=red guibg=#434C5E
+    hi LspReferenceWrite cterm=bold ctermbg=red guibg=#434C5E
+    augroup lsp_document_highlight
+    autocmd! * <buffer>
+    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    augroup END
     ]], false)
   end
 end
 
 
 nvim_lsp.clangd.setup({
-    cmd = {"clangd", "--background-index"},
-    on_attach = on_attach,
-    init_options = {
-        clangdFileStatus = true
-    },
+  cmd = {"clangd", "-fallback-style='{IndentWidth: 2}'", "--background-index"},
+  on_attach = on_attach,
+  init_options = {
+    clangdFileStatus = true
+  },
 })
 
 nvim_lsp.pyright.setup {
-    on_attach = on_attach,
-    settings = {
-        python = {
-            formatting = {
-                provider = "black",
-                blackPath = "/usr/bin/black",
-            }
-        }
-    }
+  on_attach = on_attach,
 }
 
 nvim_lsp.bashls.setup {
-    on_attach = on_attach,
+  on_attach = on_attach,
 }
 
 nvim_lsp.tsserver.setup {
-    on_attach = on_attach,
+  on_attach = on_attach,
+}
+
+nvim_lsp.gopls.setup{
+  on_attach = on_attach,
+  cmd = {"gopls", "serve"},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
+
+
+local black = { formatCommand = 'black --quiet -', formatStdin = true }
+local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatStdin = true }
+
+nvim_lsp.efm.setup {
+  on_attach = on_attach,
+  init_options = { documentFormatting = true, codeAction = true },
+  filetypes = { "py", "js", "ts", "json","yaml", "html", "css", "scss", "md" },
+  root_dir = vim.loop.cwd,
+  settings = {
+    rootMarkers = { '.git/'},
+    languages = {
+      python = { black },
+      typescript = { prettier },
+      javascript = { prettier },
+      typescriptreact = { prettier },
+      javascriptreact = { prettier },
+      yaml = { prettier },
+      json = { prettier },
+      html = { prettier },
+      scss = { prettier },
+      css = { prettier },
+      markdown = { prettier },
+    },
+  },
 }

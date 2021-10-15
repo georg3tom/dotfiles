@@ -30,6 +30,13 @@
   font: @prompt-text-font;
   padding: @prompt-element-padding;
 }
+element.alternate.active,
+element.normal.active,
+element.alternate.urgent,
+element.normal.urgent {
+  background-color: @background-light;
+  text-color: @foreground;
+}
 element.selected.urgent {
   background-color: @off;
   text-color: @background;

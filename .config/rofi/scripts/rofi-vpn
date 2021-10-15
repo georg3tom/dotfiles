@@ -51,7 +51,7 @@ bring_menu() {
     # There's an active VPN connection.
     if [ -n "$active" ]; then
         printf '%s\n' "$list" \
-            | rofi -theme 'themes/vpn.rasi' \
+            | rofi -theme-str '@import "vpn.rasi"' \
                    -theme-str "$(get_style 'on')" \
                    -dmenu \
                    -i \
@@ -61,7 +61,7 @@ bring_menu() {
     # No active VPN connection.
     else
         printf '%s\n' "$list" \
-            | rofi -theme 'themes/vpn.rasi' \
+            | rofi -theme-str '@import "vpn.rasi"' \
                    -theme-str "$(get_style 'off')" \
                    -dmenu \
                    -i \

@@ -45,7 +45,8 @@ textbox-prompt-colon {
 #element.selected {
   border-color: @accent;
 }
-element.active,
+element.alternate.active,
+element.normal.active,
 element.selected.urgent {
   background-color: @on;
   text-color: @background;
@@ -54,7 +55,8 @@ element.selected.urgent {
 element.selected.urgent {
   border-color: @accent;
 }
-element.urgent,
+element.alternate.urgent,
+element.normal.urgent,
 element.selected.active {
   background-color: @off;
   text-color: @background;

@@ -1,2 +1,2 @@
 #!/bin/bash
-rofi -modi window -show window -theme 'themes/apps.rasi'
+rofi -modi window -show window -theme-str '@import "apps.rasi"'

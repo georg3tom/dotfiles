@@ -36,7 +36,7 @@ current=$(mpc current --format '%artist% - %title%')
 # shellcheck disable=2086
 chosen=$(printf '%s;%s;%s;%s;%s;%s\n' "$previous" "$play_pause" "$stop" "$next" \
                                       "$toggle_repeat" "$toggle_random" \
-    | rofi -theme 'themes/music.rasi' \
+    | rofi -theme-str '@import "music.rasi"' \
            -p "$current" \
            -dmenu \
            -sep ';' \

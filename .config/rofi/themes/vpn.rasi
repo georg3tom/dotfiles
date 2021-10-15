@@ -40,15 +40,19 @@ entry {
   padding: @list-element-padding;
   margin: @list-element-margin;
   border: @list-element-border;
+}
+element.alternate.normal,
+element.normal.normal {
   background-color: @background-light;
   border-color: @background-light;
 }
-#element.selected {
+element.selected.normal {
   background-color: @background-focus;
   text-color: @accent;
   border-color: @accent;
 }
-#element.active {
+element.alternate.active,
+element.normal.active {
   background-color: @on;
   text-color: @background;
   border-color: @on;

@@ -20,12 +20,15 @@
 #listview {
   layout: horizontal;
 }
-#element {
+element {
   padding: @option-element-padding;
-  background-color: @background-light;
   border-radius : 20px;
 }
-#element.selected {
+element.normal.normal,
+element.alternate.normal {
+  background-color: @background-light;
+}
+element.selected.normal {
   background-color: @accent;
   text-color: @background;
 }

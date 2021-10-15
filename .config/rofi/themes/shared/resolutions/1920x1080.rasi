@@ -19,11 +19,11 @@
    * Values bellow are 'no-padding' ones for a size 60 (@icon-font) font, played
    * around using this character: ■
    * We then add add 100 actual padding around the icons.
-   *                                    -12px 0px   -19px -72px */
-  option-element-padding:               88px  100px 81px  28px;
-  option-3-window-padding:              408px 446px;
+   *                                    -12px 0px   -19px -96px */
+  option-element-padding:               88px  100px 81px  4px;
+  option-3-window-padding:              407px 442px;
   option-3-listview-spacing:            126px;
-  option-5-window-padding:              408px 183px;
+  option-5-window-padding:              407px 177px;
   option-5-listview-spacing:            65px;
   option-6-listview-spacing:            35px;
 
@@ -31,14 +31,14 @@
 
   i3-keybindings-textbox-prompt-colon-padding: @network-textbox-prompt-colon-padding;
 
-  music-window-padding:                 330px 111px;
+  music-window-padding:                 330px 86px;
   music-inputbar-margin:                10px 0px;
   music-prompt-padding:                 14px 20px 10px 20px;
   music-prompt-margin:                  0px 0px 0px -2px;
   music-element-border:                 12px;
   /* Every @option-element-padding minus @music-element-border, except for the
    * bottom value. */
-  music-element-padding:                76px 88px 139px 65px;
+  music-element-padding:                76px 88px 70px 66px;
 
   network-textbox-prompt-colon-padding: 14px 10px 10px 10px;
 

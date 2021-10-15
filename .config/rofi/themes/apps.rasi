@@ -34,14 +34,20 @@ entry {
   text-color: @accent;
   padding: @all-entry-padding;
 }
+listview {
+  columns: 2;
+}
 #element {
   padding: @list-element-padding;
   margin: @list-element-margin;
   border: @list-element-border;
+}
+element.normal.normal,
+element.alternate.normal {
   background-color: @background-light;
   border-color: @background-light;
 }
-#element.selected {
+element.selected.normal {
   background-color: @background-focus;
   text-color: @accent;
   border-color: @accent;

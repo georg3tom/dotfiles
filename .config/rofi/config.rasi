@@ -1,13 +1,28 @@
 configuration {
   show-icons:      true;
-  /* icon-theme:      "Papirus"; */
+  icon-theme:      "Papirus";
   cycle:           true;
-  hide-scrollbar:  true;
   disable-history: false;
   monitor:         "-4";
   modi:            "drun";
   display-drun:    "apps";
-  columns:         2;
+}
+
+/* Fixes for rofi 1.7.0 */
+window {
+  border: 0px;
+}
+inputbar {
+  spacing: -4px;
+}
+listview {
+  columns: 1;
+  scrollbar: false;
+  border: 0px;
+}
+element-text,
+element-icon {
+  background-color: transparent;
 }
 
 @import "themes/shared/active-colorscheme.rasi"

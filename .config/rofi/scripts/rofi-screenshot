@@ -5,22 +5,22 @@
 # Uses: date maim notify-send rofi xclip xdotool
 
 save_location="$HOME/Pictures/Screenshots"
-screenshot_path="$save_location/$(date '+%Y%b%d::%H%M%S').png"
+screenshot_path="$save_location/$(date +'%Y-%m-%d-%H%M%S').png"
 
 screen=''
 area=''
 window=''
 
 chosen=$(printf '%s;%s;%s\n' "$screen" "$area" "$window" \
-    | rofi -theme 'themes/screenshot.rasi' \
+    | rofi -theme-str '@import "screenshot.rasi"' \
            -dmenu \
            -sep ';' \
            -selected-row 1)
 
 case "$chosen" in
-    "$screen") extra_args='--delay=1' ;;
+    "$screen") extra_args='--delay=0.5' ;;
     "$area")   extra_args='--delay=0.1 --select --highlight --color=0.85,0.87,0.91,0.2' ;;
-    "$window") extra_args="--delay=1 --window=$(xdotool getactivewindow)" ;;
+    "$window") extra_args="--delay=0.5 --window=$(xdotool getactivewindow)" ;;
     *)         exit 1 ;;
 esac
 
