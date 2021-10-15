@@ -4,7 +4,7 @@
 
 # terminal emulator
 super + Return
-    st
+    alacritty
 
 # program launcher and rofi
 super + d
