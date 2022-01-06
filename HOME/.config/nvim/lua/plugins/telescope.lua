@@ -12,16 +12,19 @@ require('telescope').setup{
       theme = "ivy",
     },
     live_grep = {
-      theme = "ivy",
+      theme = "dropdown",
     },
     git_files = {
       theme = "ivy",
     },
     buffers = {
-      theme = "ivy",
+      theme = "dropdown",
     },
     current_buffer_fuzzy_find = {
       theme = "ivy",
+    },
+    lsp_code_actions = {
+      theme = "dropdown",
     },
   },
   extensions = {
@@ -62,5 +65,6 @@ end
 mapper('n', '<space><space>', "require('telescope.builtin').buffers{ show_all_buffers = true }")
 mapper('n', '<space>p', "git_find_files()")
 mapper('n', '<space>ff', "require('telescope.builtin').live_grep()")
+mapper('n', '<space>ca', "require('telescope.builtin').lsp_code_actions()")
 
 mapper('n', '<space>fd', "search_dotfiles()")

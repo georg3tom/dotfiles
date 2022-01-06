@@ -1,12 +1,3 @@
--- require'lualine'.setup {
---   options = {
---     theme = 'nord',
---     component_separators = {'|', '|'},
---     section_separators = {'', ''},
---   },
--- }
--- 
-
 require("el").reset_windows()
 
 local builtin = require "el.builtin"
@@ -102,7 +93,7 @@ require("el").setup {
       { " " },
       { sections.split, required = true },
       { git_icon },
-      { sections.maximum_width(builtin.responsive_file(140, 90), 0.40), required = true },
+      { sections.maximum_width(builtin.make_responsive_file(140, 90), 0.40), required = true },
       { sections.collapse_builtin { { " " }, { builtin.modified_flag } } },
       { sections.split, required = true },
       { show_current_func },

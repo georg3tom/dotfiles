@@ -8,10 +8,12 @@ fi
 export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
 export PATH=$PATH:$HOME/.yarn/bin:$HOME/.gem/ruby/2.7.0/bin
+
 export LANG=en_IN.UTF-8
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL='alacritty'
+export TERMINAL='kitty'
+export BROWSER='brave'
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
 setopt HIST_SAVE_NO_DUPS
@@ -92,7 +94,6 @@ ZSH_AUTOSUGGEST_STRATEGY=(history)
 alias c='clear';
 alias vim='nvim';
 alias la='ls -la';
-# alias gotop='gotop -c monokai -p -s'
 alias hotspot='nmcli con up Hotspot ifname wlo1'
 alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
@@ -127,12 +128,12 @@ export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
 --color=dark
 --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
 --color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
-
 '
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-[[ ! -f ~/.config/zsh/pure2.zsh ]] || source ~/.config/zsh/pure2.zsh
 
 source ~/.config/nnn/nnn.sh
 source ~/.config/zsh/notes.zsh
+
+# eval "$(starship init zsh)"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

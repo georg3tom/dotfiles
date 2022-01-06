@@ -1,21 +1,17 @@
 local nvim_lsp = require('lspconfig')
 
--- vim.fn.sign_define(
---     "LspDiagnosticsSignError",
---     {texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError"}
--- )
--- vim.fn.sign_define(
---     "LspDiagnosticsSignWarning",
---     {texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning"}
--- )
--- vim.fn.sign_define(
---     "LspDiagnosticsSignHint",
---     {texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint"}
--- )
--- vim.fn.sign_define(
---     "LspDiagnosticsSignInformation",
---     {texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation"}
--- )
+-- vim.fn.sign_define("DiagnosticSignError", { text = "✗", texthl = "DiagnosticSignError" })
+-- vim.fn.sign_define("DiagnosticSignWarn", { text = "!", texthl = "DiagnosticSignWarn" })
+-- vim.fn.sign_define("DiagnosticSignInformation", { text = "", texthl = "DiagnosticSignInfo" })
+-- vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
+--
+vim.diagnostic.config({
+  underline = true,
+  virtual_text = true,
+  signs = true,
+  severity_sort = true,
+  update_in_insert=false,
+})
 
 
 local on_attach = function(client, bufnr)
@@ -30,18 +26,17 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  buf_set_keymap('n', '<C-l>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  buf_set_keymap('n', '<space>k', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
   buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
   buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+  buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setqflist({open = true})<CR>', opts)
 
   -- Set some keybinds conditional on server capabilities
   if client.resolved_capabilities.document_formatting then
@@ -54,13 +49,13 @@ local on_attach = function(client, bufnr)
   -- Set autocommands conditional on server_capabilities
   if client.resolved_capabilities.document_highlight then
     vim.api.nvim_exec([[
-    hi LspReferenceRead cterm=bold ctermbg=red guibg=#434C5E
-    hi LspReferenceText cterm=bold ctermbg=red guibg=#434C5E
-    hi LspReferenceWrite cterm=bold ctermbg=red guibg=#434C5E
+    hi link LspReferenceRead Visual
+    hi link LspReferenceText Visual
+    hi link LspReferenceWrite Visual
     augroup lsp_document_highlight
-    autocmd! * <buffer>
-    autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-    autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     augroup END
     ]], false)
   end
@@ -75,17 +70,16 @@ nvim_lsp.clangd.setup({
   },
 })
 
-nvim_lsp.pyright.setup {
-  on_attach = on_attach,
-}
+local servers = { 'pyright', 'bashls', 'tsserver', 'rls' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
 
-nvim_lsp.bashls.setup {
-  on_attach = on_attach,
-}
-
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-}
 
 nvim_lsp.gopls.setup{
   on_attach = on_attach,
@@ -107,10 +101,9 @@ local prettier = { formatCommand = 'prettier --stdin-filepath ${INPUT}', formatS
 nvim_lsp.efm.setup {
   on_attach = on_attach,
   init_options = { documentFormatting = true, codeAction = true },
-  filetypes = { "py", "js", "ts", "json","yaml", "html", "css", "scss", "md" },
-  root_dir = vim.loop.cwd,
+  filetypes = { "python", "js", "ts", "json","yaml", "html", "css", "scss", "md" },
+  root_dir =  nvim_lsp.util.root_pattern("yarn.lock", "package.json", ".git"),
   settings = {
-    rootMarkers = { '.git/'},
     languages = {
       python = { black },
       typescript = { prettier },

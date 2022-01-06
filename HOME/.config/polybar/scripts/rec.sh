@@ -6,6 +6,3 @@ then
 else
     echo ""
 fi
-
-    
-

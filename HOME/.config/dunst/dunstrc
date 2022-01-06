@@ -24,9 +24,8 @@
     frame_color = "#4C566A"
     separator_color = frame
     sort = yes
-    markup = full
     idle_threshold = 120
-    font = SF Pro Display 12
+    font = "SF Pro Display 12"
     line_height = 0
     markup = full
     format = "<span><b>%s %p</b></span>\n%b"

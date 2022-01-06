@@ -1,5 +1,4 @@
 local opts = { noremap=true, silent=true }
-vim.api.nvim_set_keymap('n', '<space>h', ':set invhlsearch<CR>',opts)
 vim.api.nvim_set_keymap('n', '<C-j>', ':cnext<CR>',opts)
 vim.api.nvim_set_keymap('n', '<C-k>', ':cprev<CR>',opts)
 vim.api.nvim_set_keymap('n', '<M-h>', '<C-W><C-H>',opts)

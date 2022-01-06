@@ -25,19 +25,18 @@ fixed-center = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-border-bottom-size = 2
+; border-bottom-size = 2
 border-bottom-color = ${colors.color8}
 
 module-margin-left = 2
 module-margin-right = 1
 
 font-0 = "SF Pro Display:style=Regular:size=11:antialias=true;3"
-font-1 = "SF Pro Display:style=Regular:size=14:antialias=true;3"
-font-2 = "Jam\-icons:style=Regular:size=13;4"
+font-1 = "JetBrainsMono Nerd Font Mono:style=Regular:size=14:antialias=true;4"
 
 modules-left = bspwm player
 modules-center = date
-modules-right = rec eth memory pulseaudio backlight-acpi battery dunst line
+modules-right = eth memory pulseaudio backlight-acpi battery dunst line
 
 tray-position = right
 tray-padding = 6
@@ -140,14 +139,15 @@ enable-scroll = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "􀐞 "
+format-prefix = "􀑀 "
+; format-pefix-foreground = ${colors.color13}
 label = %percentage_used%%
 format = <label>
 
@@ -199,8 +199,8 @@ type = internal/network
 interface = enp2s0
 interval = 3.0
 
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground}
+format-connected-prefix = "燎 "
+; format-connected-prefix-foreground = ${colors.color3}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -215,24 +215,24 @@ time = %H:%M
 time-alt = %H:%M
 
 label = %date% %time%
-format =  <label>
-format-foreground = ${colors.foreground}
+format = <label>
+format-prefix = "􀐫 "
+; format-prefix-foreground = #D08770
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${colors.foreground}
 click-right = pavucontrol
 
-label-muted = 
+label-muted = 􀊣
 label-muted-foreground = ${colors.color4}
 
-ramp-volume-0 = 􀊠
-ramp-volume-1 = 􀊤
-ramp-volume-2 = 􀊦
-ramp-volume-3 = 􀊦
+ramp-volume-0 = 􀊤
+ramp-volume-1 = 􀊦
+; ramp-volume-foreground = #8FBCBB
 
 [module/alsa]
 type = internal/alsa
@@ -288,16 +288,16 @@ ramp-capacity-6 = 􀊼
 ramp-capacity-7 = 􀊼
 ramp-capacity-8 = 􀊼
 ramp-capacity-9 = 􀊼
-ramp-capacity-0-foreground = #FF5C57
-ramp-capacity-1-foreground = #FF5C57
-ramp-capacity-2-foreground = #FF6AC1
-ramp-capacity-3-foreground = #FF6AC1
-ramp-capacity-4-foreground = #57C7FF
+ramp-capacity-0-foreground = #BF616A
+ramp-capacity-1-foreground = #BF616A
+ramp-capacity-2-foreground = #D08770
+ramp-capacity-3-foreground = #D08770
+ramp-capacity-4-foreground = #8FBCBB
 ramp-capacity-5-foreground = #57C7FF
-ramp-capacity-6-foreground = #5AF78E
-ramp-capacity-7-foreground = #5AF78E
-ramp-capacity-8-foreground = #5AF78E
-ramp-capacity-9-foreground = #5AF78E
+ramp-capacity-6-foreground = #A3BE8C
+ramp-capacity-7-foreground = #A3BE8C
+ramp-capacity-8-foreground = #A3BE8C
+ramp-capacity-9-foreground = #A3BE8C
 ramp-capacity-foreground = ${colors.foreground}
 
 [module/temperature]
@@ -343,7 +343,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = false
+; pseudo-transparency = true
 
 [global/wm]
 margin-top = 5
@@ -360,7 +360,7 @@ initial = 1
 format-foreground = ${colors.color3}
 format-background = ${colors.background}
 
-hook-0 = echo "%{A1: dunstctl set-paused true && polybar-msg hook dunst 2:}  %{A}" &
-hook-1 = echo "%{A1: dunstctl set-paused false && polybar-msg hook dunst 1:} %{F#81A1C1}%{F-} %{A}" &
+hook-0 = echo "%{A1: dunstctl set-paused true && polybar-msg hook dunst 2:} 􀋚 %{A}" &
+hook-1 = echo "%{A1: dunstctl set-paused false && polybar-msg hook dunst 1:} %{F#81A1C1}􀋞%{F-} %{A}" &
 
 ; vim:ft=dosini

@@ -1,5 +1,11 @@
 # DOTFILES
 
+<p align="center">
+    <a href="https://github.com/georg3tom/dotfiles/stargazers"><img src="https://img.shields.io/github/stars/georg3tom/dotfiles?colorA=20202a&colorB=cddbf9&style=for-the-badge"></a>
+    <a href="https://github.com/georg3tom/dotfiles/issues"><img src="https://img.shields.io/github/issues/georg3tom/dotfiles?colorA=20202a&colorB=e6dfb8&style=for-the-badge"></a>
+    <a href="https://github.com/georg3tom/dotfiles/network/members"><img src="https://img.shields.io/github/forks/georg3tom/dotfiles?colorA=20202a&colorB=ebb9b9&style=for-the-badge"></a>
+</p>
+
 HOME dir managed using [Stow](https://www.gnu.org/software/stow/)
 
 ```bash
@@ -8,12 +14,6 @@ git clone https://github.com/georg3tom/dotfiles
 cd dotfiles
 stow HOME
 ```
-
-<p align="center">
-    <a href="https://github.com/georg3tom/dotfiles/stargazers"><img src="https://img.shields.io/github/stars/georg3tom/dotfiles?colorA=20202a&colorB=cddbf9&style=for-the-badge"></a>
-    <a href="https://github.com/georg3tom/dotfiles/issues"><img src="https://img.shields.io/github/issues/georg3tom/dotfiles?colorA=20202a&colorB=e6dfb8&style=for-the-badge"></a>
-    <a href="https://github.com/georg3tom/dotfiles/network/members"><img src="https://img.shields.io/github/forks/georg3tom/dotfiles?colorA=20202a&colorB=ebb9b9&style=for-the-badge"></a>
-</p>
 
 ## NORD
 ![nord](/images/nord.png)

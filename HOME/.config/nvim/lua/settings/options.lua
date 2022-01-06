@@ -9,7 +9,6 @@ opt.mouse = "a"
 opt.completeopt = "menu,menuone,noselect"
 opt.clipboard = "unnamedplus"
 opt.updatetime = 1000
-opt.hidden = true
 opt.undofile = true
 opt.relativenumber = true
 opt.number = true
@@ -20,6 +19,8 @@ opt.expandtab = true
 opt.scrolloff = 10
 opt.colorcolumn = "88"
 opt.shortmess = opt.shortmess +"c"
+opt.cursorline = true
+opt.cursorline = false
 
 -- Ignore compiled files
 opt.wildignore = "__pycache__"

@@ -99,11 +99,7 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp', priority=10 },
-    { name = 'buffer', max_item_count = 5, opts = {
-      get_bufnrs = function()
-        return vim.api.nvim_list_bufs()
-      end
-    } },
+    { name = 'buffer', max_item_count = 5},
     { name = 'luasnip' },
     { name = 'treesitter' },
     { name = 'path' },
@@ -114,5 +110,5 @@ cmp.setup({
   },
 })
 
--- distable ghost highlight
+-- disable ghost highlight
 -- vim.cmd [[highlight! default link CmpItemAbbr None]]
