@@ -105,8 +105,10 @@ cmp.setup({
     { name = 'path' },
     { name = 'calc' },
   },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+    }
   },
 })
 

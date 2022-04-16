@@ -67,7 +67,7 @@ return require('packer').startup(function()
   }
 
   require('plugins.treesitter')
-  require('plugins.el')
+  require('plugins.lualine')
   require('plugins.comment')
   require('plugins.telescope')
   require('plugins.gitsigns')
