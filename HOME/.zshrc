@@ -9,10 +9,11 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.6.0/bin
 export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
 export PATH=$PATH:$HOME/.yarn/bin:$HOME/.gem/ruby/2.7.0/bin
 
-export LANG=en_IN.UTF-8
+export LC_CTYPE=en_IN.UTF-8
 export EDITOR="nvim"
 export VISUAL="nvim"
-export TERMINAL='kitty'
+export TERMNAL='kitty'
+export TERM=xterm-256color
 export BROWSER='brave'
 # Path to your oh-my-zsh installation.
 export ZSH="/home/george/.oh-my-zsh"
@@ -124,11 +125,10 @@ bindkey '^p' fzf-vim-widget
 
 bindkey '^ ' autosuggest-execute
 
-export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'
---color=dark
---color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
---color pointer:#BF616A,info:#4C566A,spinner:#4C566A,header:#4C566A,prompt:#81A1C1,marker:#EBCB8B
-'
+export FZF_DEFAULT_OPTS=" \
+--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+--color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+--color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 
 source ~/.config/nnn/nnn.sh
 source ~/.config/zsh/notes.zsh

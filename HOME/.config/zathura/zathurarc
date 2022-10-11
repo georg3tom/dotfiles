@@ -3,4 +3,4 @@ set font "SF Pro Display 12"
 set selection-clipboard clipboard
 set sandbox none
 
-include ./base16-nord.config
+include ./catppuccin-frappe.config

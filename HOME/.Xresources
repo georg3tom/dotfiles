@@ -3,4 +3,4 @@ st.termname:    st-256color
 
 st.borderpx:    8
 
-#include "/home/george/.config/xresources/nord"
+#include "/home/george/.config/xresources/frappe"

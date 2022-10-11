@@ -31,7 +31,7 @@ screencast() { \
     -f pulse -i default \
     -r 30 \
     -c:v libx264 -crf 0 -preset ultrafast -c:a mp3 \
-    "$HOME/Pictures/Screencasts/screencast-$(date '+%y.%m.%d-%H:%M').mp4" &
+    "/run/media/george/Data/Recordings/screencast-$(date '+%y.%m.%d-%H:%M').mp4" &
     echo $! > /tmp/recordingpid
 }
 

@@ -12,20 +12,18 @@ return require('packer').startup(function()
 
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use {'nvim-treesitter/nvim-treesitter-textobjects', run = ':TSUpdate' }
+  use { 'nvim-treesitter/nvim-treesitter-context' }
+
   use {'windwp/nvim-autopairs'}
   use {
     'nvim-telescope/telescope.nvim',
     requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
   }
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { "nvim-telescope/telescope-file-browser.nvim" }
+
   use { 'numToStr/Comment.nvim' }
 
-  use {
-    'tjdevries/express_line.nvim',
-    -- 'glepnir/galaxyline.nvim',
-    -- branch = 'main',
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
   use {
   'nvim-lualine/lualine.nvim',
   requires = {'kyazdani42/nvim-web-devicons', opt = true}
@@ -57,6 +55,9 @@ return require('packer').startup(function()
       'nvim-lua/plenary.nvim'
     }
   }
+
+  -- use 'ggandor/lightspeed.nvim'
+
   use {
     'chipsenkbeil/distant.nvim',
     config = function()
@@ -65,6 +66,8 @@ return require('packer').startup(function()
       }
     end
   }
+
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   require('plugins.treesitter')
   require('plugins.lualine')

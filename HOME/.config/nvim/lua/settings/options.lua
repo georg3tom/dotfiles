@@ -19,8 +19,10 @@ opt.expandtab = true
 opt.scrolloff = 10
 opt.colorcolumn = "88"
 opt.shortmess = opt.shortmess +"c"
+opt.laststatus = 3
 opt.cursorline = true
-opt.cursorline = false
+opt.cursorlineopt="number"
+opt.spell = false
 
 -- Ignore compiled files
 opt.wildignore = "__pycache__"
@@ -29,7 +31,6 @@ opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
 -- opt.pumblend = 0 -- opacity
 
 -- opt.inccommand = "split"
--- opt.cursorline = true
 
 opt.list = true
 opt.listchars= "eol:↲,tab:  "
