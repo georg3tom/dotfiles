@@ -2,10 +2,8 @@ local actions = require('telescope.actions')
 
 require('telescope').setup{
   defaults = {
-    prompt_prefix = "❯ ",
-    selection_caret = "❯ ",
-    mappings = {
-    },
+    prompt_prefix = "   ",
+    selection_caret = "  ",
   },
   pickers = {
     find_files = {
@@ -26,6 +24,9 @@ require('telescope').setup{
     lsp_code_actions = {
       theme = "dropdown",
     },
+    lsp_references = {
+      theme = "dropdown",
+    },
   },
   extensions = {
     fzf = {
@@ -41,7 +42,7 @@ require('telescope').setup{
   },
 }
 
-require("telescope").load_extension "file_browser"
+require("telescope").load_extension("file_browser")
 require('telescope').load_extension('fzf')
 
 vim.api.nvim_set_keymap(

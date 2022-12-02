@@ -17,16 +17,20 @@ return require('packer').startup(function()
   use {'windwp/nvim-autopairs'}
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
+    requires = {
+      {'nvim-lua/popup.nvim'}, 
+      {'nvim-lua/plenary.nvim'},
+    }
   }
+
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use { "nvim-telescope/telescope-file-browser.nvim" }
 
   use { 'numToStr/Comment.nvim' }
 
   use {
-  'nvim-lualine/lualine.nvim',
-  requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    'nvim-lualine/lualine.nvim',
+    requires = {'nvim-tree/nvim-web-devicons', opt = true}
   }
 
   use {'neovim/nvim-lspconfig'}
@@ -44,10 +48,13 @@ return require('packer').startup(function()
 
   use {'rafamadriz/friendly-snippets'}
 
-  use {'norcalli/nvim-colorizer.lua'}
-  require('colorizer').setup()
+  use({
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+        require("colorizer").setup({})
+    end
+  })
 
-  use {'arcticicestudio/nord-vim'}
 
   use {
     'lewis6991/gitsigns.nvim',
@@ -56,19 +63,40 @@ return require('packer').startup(function()
     }
   }
 
-  -- use 'ggandor/lightspeed.nvim'
+  use {
+    'ggandor/leap.nvim',
+    requires = {
+      'tpope/vim-repeat',
+      'ggandor/flit.nvim'
+    }
+  }
 
   use {
-    'chipsenkbeil/distant.nvim',
-    config = function()
-      require('distant').setup {
-        ['*'] = require('distant.settings').chip_default()
-      }
-    end
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    }
   }
 
   use { "catppuccin/nvim", as = "catppuccin" }
 
+  use({
+    "nvim-tree/nvim-web-devicons",
+    config = function()
+        require("nvim-web-devicons").setup({})
+    end
+  })
+
+  use({
+    "kylechui/nvim-surround",
+    config = function()
+        require("nvim-surround").setup({})
+    end
+  })
+
+  
+  require('plugins.colorscheme')
   require('plugins.treesitter')
   require('plugins.lualine')
   require('plugins.comment')
@@ -76,5 +104,6 @@ return require('packer').startup(function()
   require('plugins.gitsigns')
   require('plugins.cmp')
   require('plugins.autopairs')
-  require('plugins.colorscheme')
+  require('plugins.leap')
+  require('plugins.refactoring')
 end)
