@@ -1,116 +1,138 @@
-local cmp = require'cmp'
-local luasnip = require'luasnip'
-require("luasnip/loaders/from_vscode").lazy_load()
-
 local cmp_kinds = {
-  Class = "ﴯ ",
-  Color = " ",
-  Constant = " ",
-  Constructor = " ",
-  Enum = "練",
-  EnumMember = " ",
-  Event = " ",
-  Field = "ﰠ ",
-  File = "",
-  Folder = " ",
-  Function = " ",
-  Interface = "ﰮ ",
-  Keyword = " ",
-  Method = " ",
-  Module = " ",
-  Operator = "",
-  Property = "ﰠ ",
-  Reference = " ",
-  Snippet = " ",
-  Struct = "פּ ",
-  Text = " ",
-  TypeParameter = " ",
-  Unit = "塞",
-  Value = " ",
-  Variable = " ",
+  Array = " ",
+  Boolean = " ",
+  Class = " ",
+  Color = " ",
+  Constant = " ",
+  Constructor = " ",
+  Copilot = " ",
+  Enum = " ",
+  EnumMember = " ",
+  Event = " ",
+  Field = " ",
+  File = " ",
+  Folder = " ",
+  Function = " ",
+  Interface = " ",
+  Key = " ",
+  Keyword = " ",
+  Method = " ",
+  Module = " ",
+  Namespace = " ",
+  Null = " ",
+  Number = " ",
+  Object = " ",
+  Operator = " ",
+  Package = " ",
+  Property = " ",
+  Reference = " ",
+  Snippet = " ",
+  String = " ",
+  Struct = " ",
+  Text = " ",
+  TypeParameter = " ",
+  Unit = " ",
+  Value = " ",
+  Variable = " ",
 }
 
-cmp.setup({
-  preselect = require'cmp.types'.cmp.PreselectMode.None,
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  formatting = {
-    format = function(entry, vim_item)
-      vim_item.kind = string.format("%s %s", cmp_kinds[vim_item.kind], vim_item.kind)
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        luasnip = "[SNP]",
-        buffer = "[BUF]",
-        nvim_lua = "[LUA]",
-        path = "[PTH]",
-        calc = "[CAL]",
-        emoji = "[EMJ]",
-      })[entry.source.name]
-
-      return vim_item
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+return {
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+    dependencies = {
+      "rafamadriz/friendly-snippets",
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
     },
-    ['<c-j>'] = function(fallback)
-      if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<c-k>'] = function(fallback)
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
-    -- ['<Tab>'] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_next_item()
-    --   elseif luasnip.expand_or_jumpable() then
-    --     luasnip.expand_or_jump()
-    --   else
-    --     fallback()
-    --   end
-    -- end,
-    -- ['<S-Tab>'] = function(fallback)
-    --   if cmp.visible() then
-    --     cmp.select_prev_item()
-    --   elseif luasnip.jumpable(-1) then
-    --     luasnip.jump(-1)
-    --   else
-    --     fallback()
-    --   end
-    -- end,
+    opts = {
+      history = true,
+      delete_check_events = "TextChanged",
+    },
+    -- stylua: ignore
+    keys = {
+      {
+        "<tab>",
+        function()
+          return require("luasnip").jumpable(1) and "<Plug>luasnip-jump-next" or "<tab>"
+        end,
+        expr = true,
+        silent = true,
+        mode = "i",
+      },
+      { "<tab>",   function() require("luasnip").jump(1) end,  mode = "s" },
+      { "<s-tab>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
+    },
   },
-  sources = {
-    { name = 'nvim_lsp', priority=10 },
-    { name = 'buffer', max_item_count = 5},
-    { name = 'luasnip' },
-    { name = 'treesitter' },
-    { name = 'path' },
-    { name = 'calc' },
-  },
-  window = {
-    documentation = {
-      border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    }
-  },
-})
 
--- disable ghost highlight
--- vim.cmd [[highlight! default link CmpItemAbbr None]]
+  {
+    "hrsh7th/nvim-cmp",
+    -- load cmp on InsertEnter
+    event = "InsertEnter",
+    -- these dependencies will only be loaded when cmp loads
+    -- dependencies are always lazy-loaded unless specified otherwise
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-calc",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "saadparwaiz1/cmp_luasnip",
+      "ray-x/cmp-treesitter",
+    },
+    init = function()
+      local cmp = require 'cmp'
+      require('cmp').setup {
+        preselect = require 'cmp.types'.cmp.PreselectMode.None,
+        snippet = {
+          expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+          end,
+        },
+        formatting = {
+          format = function(_, item)
+            local icons = cmp_kinds
+            if icons[item.kind] then
+              item.kind = icons[item.kind] .. item.kind
+            end
+            return item
+          end,
+        },
+        mapping = {
+          ['<C-p>'] = cmp.mapping.select_prev_item(),
+          ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
+          ['<C-Space>'] = cmp.mapping.complete(),
+          ['<C-e>'] = cmp.mapping.close(),
+          ['<CR>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          },
+          ["<S-CR>"] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Replace,
+            select = true,
+          }),
+        },
+        sources = {
+          { name = 'nvim_lsp',  priority = 10,     max_item_count = 15 },
+          { name = 'luasnip' },
+          { name = 'buffer',    max_item_count = 5 },
+          { name = 'treesitter' },
+          { name = 'path' },
+          { name = 'calc' },
+        },
+        window = {
+          -- completion = cmp.config.window.bordered(),
+          -- documentation = cmp.config.window.bordered(),
+        },
+      }
+    end,
+
+  },
+}

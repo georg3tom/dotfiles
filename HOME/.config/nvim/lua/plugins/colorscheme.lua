@@ -1,42 +1,41 @@
-vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
-require("catppuccin").setup()
-vim.api.nvim_command "colorscheme catppuccin"
-
--- -- nord stuff
--- -- Telescope Colors
--- vim.cmd([[
--- function! TelescopeColors() abort
---   "highlight TelescopeSelection guifg=#EBCB8B gui=bold
---   "highlight! link TelescopeMatching  Decorator
---
---   highlight  TelescopeMatching  guifg=#EBCB8B
---   highlight! link TelescopeSelection CursorLine 
---
---   highlight! link TelescopeMultiSelection  Comment 
---   highlight! link TelescopePromptPrefix  String
---   highlight! link TelescopeSelectionCaret  TelescopeSelection
--- endfunction
---
--- augroup Colors
---     autocmd!
---     autocmd ColorScheme * call TelescopeColors()
--- augroup END
--- ]])
---
---
--- -- lsp colors
--- vim.cmd([[
--- function! DiagnosticColors() abort
---   hi! link DiagnosticError  LspDiagnosticsDefaultError
---   hi! link DiagnosticWarn  LspDiagnosticsDefaultWarning
---   hi! link DiagnosticInfo  LspDiagnosticsDefaultInformation
---   hi! link DiagnosticHint  LspDiagnosticsDefaultHint
--- endfunction
---
--- augroup Colors2
---     autocmd!
---     autocmd ColorScheme * call DiagnosticColors()
--- augroup END
--- ]])
-
--- vim.cmd('colorscheme nord')
+return {
+  "catppuccin/nvim",
+  name = "catppuccin",
+  lazy = false,
+  priority = 1000,
+  config = function()
+    require('catppuccin').setup({
+      integrations = {
+        alpha = true,
+        cmp = true,
+        flash = true,
+        gitsigns = true,
+        illuminate = true,
+        indent_blankline = { enabled = true },
+        lsp_trouble = true,
+        mason = true,
+        leap = true,
+        mini = true,
+        native_lsp = {
+          enabled = true,
+          underlines = {
+            errors = { "undercurl" },
+            hints = { "undercurl" },
+            warnings = { "undercurl" },
+            information = { "undercurl" },
+          },
+        },
+        navic = { enabled = true, custom_bg = "lualine" },
+        neotest = true,
+        noice = true,
+        notify = true,
+        neotree = true,
+        semantic_tokens = true,
+        telescope = true,
+        treesitter = true,
+        which_key = true,
+      },
+    })
+    vim.cmd.colorscheme("catppuccin-frappe")
+  end,
+}

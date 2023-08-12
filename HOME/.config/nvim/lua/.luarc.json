@@ -1,0 +1,6 @@
+{
+    "diagnostics.globals": [
+        "lsp_flags",
+        "vim"
+    ]
+}

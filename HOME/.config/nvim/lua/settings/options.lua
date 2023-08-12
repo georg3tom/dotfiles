@@ -2,6 +2,8 @@ local opt = vim.opt
 opt.termguicolors = true
 opt.showmode = false
 opt.smartindent = true
+opt.ignorecase = true
+opt.smartcase = true
 opt.splitbelow = true
 opt.splitright = true
 opt.lazyredraw = true
@@ -34,4 +36,7 @@ opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
 
 opt.list = true
 opt.listchars= "eol:↲,tab:  "
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 -- set list listchars=tab:┆·,trail:·

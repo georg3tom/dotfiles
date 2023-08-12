@@ -1,3 +1,15 @@
-vim.keymap.set('n', 's', function () require('leap').leap { target_windows = { vim.fn.win_getid() } } end)
-require('flit').setup {}
--- vim.api.nvim_set_hl(0, 'LeapBackdrop', { link = 'Comment' })
+return {
+  {
+    "ggandor/leap.nvim",
+    enabled = true,
+    config = function()
+      vim.keymap.set('n', 's', function() require('leap').leap { target_windows = { vim.fn.win_getid() } } end)
+    end,
+
+  },
+  {
+    "ggandor/flit.nvim",
+    enabled = true,
+    opts = {},
+  },
+}
