@@ -1,5 +1,6 @@
 local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 vim.diagnostic.config({
   underline = true,
@@ -55,7 +56,15 @@ end
 
 
 nvim_lsp.clangd.setup({
-  cmd = { "clangd", "-fallback-style='{IndentWidth: 2}'", "--background-index" },
+  cmd = {
+    "clangd",
+    "--background-index",
+    "--clang-tidy",
+    "--header-insertion=iwyu",
+    "--completion-style=detailed",
+    "--function-arg-placeholders",
+    "--fallback-style=llvm",
+  },
   on_attach = on_attach,
   init_options = {
     clangdFileStatus = true
