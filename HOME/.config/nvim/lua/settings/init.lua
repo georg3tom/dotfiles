@@ -1,3 +1,3 @@
-require('settings.options')
-require('settings.autocmds')
-require('settings.maps')
+require("settings.options")
+require("settings.autocmds")
+require("settings.maps")
