@@ -37,7 +37,7 @@ return {
 		-- Define your formatters
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "black" },
+			python = { "black", "isort" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 			javascript = { { "prettierd", "prettier" } },
@@ -79,6 +79,9 @@ return {
 		formatters = {
 			shfmt = {
 				prepend_args = { "-i", "2" },
+			},
+			isort = {
+				prepend_args = { "--profile", "black" },
 			},
 		},
 	},
