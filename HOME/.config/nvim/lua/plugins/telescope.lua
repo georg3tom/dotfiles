@@ -1,12 +1,10 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.2",
+	tag = "0.1.8",
 	-- or                              , branch = "0.1.x",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
 		"nvim-telescope/telescope-ui-select.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 	init = function()
@@ -61,7 +59,6 @@ return {
 		})
 	end,
 	config = function()
-		require("telescope").load_extension("file_browser")
 		require("telescope").load_extension("fzf")
 		require("telescope").load_extension("ui-select")
 
@@ -107,6 +104,7 @@ return {
 				ignore_current_buffer = true,
 			})
 		end, { desc = "[ ] Find existing buffers" })
+
 		-- Shortcut for searching your neovim configuration files
 		vim.keymap.set("n", "<leader>sn", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
