@@ -37,7 +37,7 @@ return {
 		-- Define your formatters
 		formatters_by_ft = {
 			lua = { "stylua" },
-			python = { "black", "isort" },
+			python = { "ruff_format", "isort" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
 			javascript = { { "prettierd", "prettier" } },
