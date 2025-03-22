@@ -1,0 +1,10 @@
+font-size = 14
+theme = catppuccin-frappe
+
+focus-follows-mouse = true
+shell-integration = zsh
+window-save-state = always
+quit-after-last-window-closed = true
+
+copy-on-select = clipboard
+confirm-close-surface = false
