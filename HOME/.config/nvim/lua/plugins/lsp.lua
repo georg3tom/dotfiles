@@ -5,6 +5,7 @@ return {
 
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for neovim
+			"saghen/blink.cmp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",

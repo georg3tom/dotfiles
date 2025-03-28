@@ -1,8 +1,12 @@
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 vim.keymap.set("n", "<space>e", vim.diagnostic.open_float)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "[d", function()
+	vim.diagnostic.jump({ count = -1, float = true })
+end)
+vim.keymap.set("n", "]d", function()
+	vim.diagnostic.jump({ count = 1, float = true })
+end)
 vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist)
 
 vim.diagnostic.config({
@@ -55,7 +59,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
 
 local servers = {
 	clangd = {
@@ -114,7 +118,6 @@ local servers = {
 	},
 }
 
--- Ensure the servers and tools above are installed
 require("mason").setup()
 
 local ensure_installed = vim.tbl_keys(servers or {})
