@@ -2,7 +2,6 @@ local slow_format_filetypes = {}
 
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
-		-- FormatDisable! will disable formatting just for this buffer
 		vim.b.disable_autoformat = true
 	else
 		vim.g.disable_autoformat = true
@@ -40,16 +39,14 @@ return {
 			python = { "ruff_format" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
-			javascript = { { "prettierd", "prettier" } },
-			typescript = { { "prettierd", "prettier" } },
-			typescriptreact = { { "prettierd", "prettier" } },
-			javascriptreact = { { "prettierd", "prettier" } },
-			yaml = { { "prettierd", "prettier" } },
-			json = { { "prettierd", "prettier" } },
-			html = { { "prettierd", "prettier" } },
-			scss = { { "prettierd", "prettier" } },
-			css = { { "prettierd", "prettier" } },
-			markdown = { { "prettierd", "prettier" } },
+			javascript = { "prettierd", "prettier" },
+			typescriptreact = { "prettierd", "prettier" },
+			yaml = { "prettierd", "prettier" },
+			json = { "prettierd", "prettier" },
+			html = { "prettierd", "prettier" },
+			scss = { "prettierd", "prettier" },
+			css = { "prettierd", "prettier" },
+			markdown = { "prettierd", "prettier" },
 		},
 
 		-- Set up format-on-save
