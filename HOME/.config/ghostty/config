@@ -1,10 +1,12 @@
-font-size = 14
-theme = catppuccin-frappe
+font-size = 13
+font-family = JetBrainsMono Nerd Font Mono
 
+theme = dark:rose-pine,light:rose-pine-dawn
+
+copy-on-select = clipboard
+mouse-hide-while-typing = true
 focus-follows-mouse = true
+
 shell-integration = zsh
 window-save-state = always
 quit-after-last-window-closed = true
-
-copy-on-select = clipboard
-confirm-close-surface = false
