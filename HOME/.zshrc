@@ -5,135 +5,48 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH=$PATH:$HOME/.local/bin:$HOME/.gem/ruby/2.6.0/bin
-export PATH=$PATH:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin
-export PATH=$PATH:$HOME/.yarn/bin:$HOME/.gem/ruby/2.7.0/bin
-
-export LC_CTYPE=en_IN.UTF-8
-export EDITOR="nvim"
-export VISUAL="nvim"
-export TERMNAL='kitty'
-export TERM=xterm-256color
-export BROWSER='brave'
-# Path to your oh-my-zsh installation.
-export ZSH="/home/george/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 setopt HIST_SAVE_NO_DUPS
-
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
- ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git)
-plugins=(git fzf zsh-autosuggestions )
+plugins=( fzf zsh-autosuggestions )
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
 ZSH_AUTOSUGGEST_STRATEGY=(history)
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 alias c='clear';
 alias vim='nvim';
 alias la='ls -la';
-alias hotspot='nmcli con up Hotspot ifname wlo1'
-alias hotspotd='nmcli con down Hotspot'
 alias ipinfo='curl ipinfo.io/ip'
 alias du='du -ch'
 alias df='df -h'
-alias i="yay -Slq | fzf -m --preview 'cat <(yay -Si {1}) <(yay -Fl {1} | awk \"{print \$2}\")' | xargs -ro  yay -S"
 alias mv="mv -iv"
 alias cp="cp -riv"
 alias mkdir='mkdir -vp'
 alias wgetall='wget -r -np -nH --cut-dirs=3 -R index.html'
+alias python='python3'
+setopt HIST_SAVE_NO_DUPS
+DISABLE_AUTO_TITLE="true"
+export EDITOR="nvim"
 
-urls()
-{
-    curl -s "https://tinyurl.com/api-create.php?url=$1"
-}
+# catppuccin-frappe
+# export FZF_DEFAULT_OPTS=" \
+# --color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
+# --color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
+# --color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 
-fzf-vim-widget() {
-    FFILE=$(fd --type f -c never| fzf --preview="cat {}" --preview-window=right:70%:wrap --height 40%)
-    zle reset-prompt
-    if [[ ! -z $FFILE ]]
-    then
-        $EDITOR $FFILE
-    fi
-    unset FFILE
-}
-zle     -N   fzf-vim-widget
-bindkey '^p' fzf-vim-widget
+# rose-pine
+export FZF_DEFAULT_OPTS="
+	--color=fg:#908caa,bg:#191724,hl:#ebbcba
+	--color=fg+:#e0def4,bg+:#26233a,hl+:#ebbcba
+	--color=border:#403d52,header:#31748f,gutter:#191724
+	--color=spinner:#f6c177,info:#9ccfd8
+	--color=pointer:#c4a7e7,marker:#eb6f92,prompt:#908caa"
 
+# export TERM="xterm-256color"
 bindkey '^ ' autosuggest-execute
-
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284 \
---color=fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf \
---color=marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
-
-source ~/.config/nnn/nnn.sh
-source ~/.config/zsh/notes.zsh
-
-# eval "$(starship init zsh)"
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+if [[ $TERM == "xterm-kitty" ]]; then
+  # alias ssh="kitty +kitten ssh"
+  alias ssh="TERM=xterm-256color; ssh"
+  alias mosh="TERM=xterm-256color; mosh"
+fi
