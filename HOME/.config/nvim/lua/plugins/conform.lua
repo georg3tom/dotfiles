@@ -1,5 +1,3 @@
-local slow_format_filetypes = {}
-
 vim.api.nvim_create_user_command("FormatDisable", function(args)
 	if args.bang then
 		vim.b.disable_autoformat = true
@@ -35,10 +33,10 @@ return {
 	opts = {
 		-- Define your formatters
 		formatters_by_ft = {
-			lua = { "stylua" },
-			python = { "ruff_format" },
+			python = { "ruff" },
 			sh = { "shfmt" },
 			bash = { "shfmt" },
+			lua = { "stylua" },
 			javascript = { "prettierd", "prettier" },
 			typescriptreact = { "prettierd", "prettier" },
 			yaml = { "prettierd", "prettier" },
@@ -49,33 +47,18 @@ return {
 			markdown = { "prettierd", "prettier" },
 		},
 
-		-- Set up format-on-save
-		format_on_save = function(bufnr)
+		format_after_save = function(bufnr)
+			-- Disable with a global or buffer-local variable
 			if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 				return
 			end
-			if slow_format_filetypes[vim.bo[bufnr].filetype] then
-				return
-			end
-			local function on_format(err)
-				if err and err:match("timeout$") then
-					slow_format_filetypes[vim.bo[bufnr].filetype] = true
-				end
-			end
-
-			return { timeout_ms = 200, lsp_fallback = false }, on_format
+			return { lsp_format = "fallback" }
 		end,
 
-		format_after_save = function(bufnr)
-			if not slow_format_filetypes[vim.bo[bufnr].filetype] then
-				return
-			end
-			return { lsp_fallback = true }
-		end,
 		-- Customize formatters
 		formatters = {
 			shfmt = {
-				prepend_args = { "-i", "2" },
+				prepend_args = { "-i", "2", "-ci" },
 			},
 			isort = {
 				prepend_args = { "--profile", "black" },
