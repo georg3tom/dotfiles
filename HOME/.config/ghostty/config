@@ -2,8 +2,8 @@ font-size = 13
 font-family = JetBrainsMono Nerd Font Mono
 
 # theme = dark:Rose pine,light:Rose pine dawn
-# theme = Everforest Dark Hard
-theme = Gruvbox Material Dark
+theme = Everforest Dark Hard
+# theme = Gruvbox Material Dark
 
 copy-on-select = clipboard
 mouse-hide-while-typing = true
