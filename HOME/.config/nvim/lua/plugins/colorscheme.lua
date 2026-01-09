@@ -44,7 +44,7 @@ return {
 		"rose-pine/neovim",
 		name = "rose-pine",
 		config = function()
-			-- vim.cmd("colorscheme rose-pine")
+			vim.cmd("colorscheme rose-pine")
 		end,
 	},
 
@@ -65,11 +65,10 @@ return {
 				background = "hard",
 				italics = "true",
 				colours_override = function(palette)
-					vim.inspect(palette)
 					palette.bg0 = palette.bg_dim
 				end,
 			})
-			vim.cmd.colorscheme("everforest")
+			-- vim.cmd.colorscheme("everforest")
 		end,
 	},
 	{
